@@ -29,12 +29,12 @@ abstract class BaseClass : AppCompatActivity() {
     public var LogTag: String? = null
     protected var CAId: String? = null
     protected var LogString: String? = null
-    var STORAGE_PERMISSION_CODE = 1
+    open var STORAGE_PERMISSION_CODE = 1
     open var session: Session? = null
     var classname = "Login"
     protected fun internetChangeBroadCast() {
         printLogs("Logs", "initializeViews", "init")
-        registerBroadcast()
+        //registerBroadcast()
     }
 
     fun isNetworkConnected(context: Context): Boolean {
@@ -48,7 +48,7 @@ abstract class BaseClass : AppCompatActivity() {
             LogString + "TAG - " + tag + "<br/> FUNCTION - " + funcs + "<br/> DATA - " + msg + "<br/><br/><br/><br/>"
     }
 
-    var IChangeReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+   /* var IChangeReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         @RequiresApi(api = Build.VERSION_CODES.M)
         override fun onReceive(pContext: Context, pIntent: Intent) {
             val cm = pContext.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -61,9 +61,9 @@ abstract class BaseClass : AppCompatActivity() {
                 no_connection.visibility = View.VISIBLE
             }
         }
-    }
+    }*/
 
-    fun registerBroadcast() {
+/*    fun registerBroadcast() {
         try {
             printLogs(LogTag, "registerBroadcast", "init")
             val filter = IntentFilter("android.net.conn.CONNECTIVITY_CHANGE")
@@ -73,9 +73,9 @@ abstract class BaseClass : AppCompatActivity() {
         } catch (e: Exception) {
             printLogs(LogTag, "registerBroadcast", "Exception " + e.message)
         }
-    }
+    }*/
 
-    fun unregisterBroadcast() {
+   /* fun unregisterBroadcast() {
         printLogs(LogTag, "unregisterBroadcast", "init")
         try {
             if (isInternetReceiver) {
@@ -86,9 +86,9 @@ abstract class BaseClass : AppCompatActivity() {
         } catch (e: Exception) {
             printLogs(LogTag, "unregisterBroadcast", "Exception " + e.message)
         }
-    }
+    }*/
 
-    fun openFileExplorer() {
+    open fun openFileExplorer() {
         val intent = Intent()
         intent.type = "image/*"
         intent.action = Intent.ACTION_GET_CONTENT
@@ -116,7 +116,7 @@ abstract class BaseClass : AppCompatActivity() {
         return MimeTypeMap.getSingleton().getExtensionFromMimeType(mimeType)
     }
 
-    fun requestPermission() {
+    open fun requestPermission() {
         if (ContextCompat.checkSelfPermission(
                 this,
                 Manifest.permission.READ_EXTERNAL_STORAGE

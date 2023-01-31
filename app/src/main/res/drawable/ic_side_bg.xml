@@ -2,8 +2,11 @@
     <size
         android:width="11dp"
         android:height="787dp"/>
+   <!-- <solid
+        android:color="#0878B3"/>-->
+
     <solid
-        android:color="#0878B3"/>
+        android:color="@color/App_color"/>
     <corners
         android:topLeftRadius="17dp"/>
 </shape>
