@@ -95,7 +95,7 @@ class WelcomeActivity : AppCompatActivity() {
 
     private fun launchHomeScreen() {
         prefManager!!.isFirstTimeLaunch = false
-        startActivity(Intent(this@WelcomeActivity, LoginActivity::class.java))
+        startActivity(Intent(this@WelcomeActivity,Choose_User_Activity::class.java))
         finish()
     }
 
@@ -125,7 +125,7 @@ class WelcomeActivity : AppCompatActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             val window = window
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-            window.statusBarColor = Color.TRANSPARENT
+            window.statusBarColor = resources.getColor(R.color.App_color)
         }
     }
 

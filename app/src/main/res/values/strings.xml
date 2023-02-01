@@ -4,11 +4,11 @@
     <string name="skip">SKIP</string>
     <string name="start">GOT IT</string>
     <string name="currency">$</string>
-    <string name="slide_1_title">Welcome</string>
-    <string name="slide_1_desc">offer better technical content to the world.</string>
+    <string name="slide_1_title">Medical-Pharmacy</string>
+    <string name="slide_1_desc">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using .</string>
 
-    <string name="slide_2_title">Android</string>
-    <string name="slide_2_desc">Android is a mobile operating system developed by Google.</string>
+    <string name="slide_2_title">Health-Care</string>
+    <string name="slide_2_desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry.</string>
     <string name="login_text">Hello There, Welcome Back</string>
     <string name="login_text1">Sign In to continue</string>
 
@@ -22,5 +22,8 @@
     <string name="privacy_policy_and_terms_of_service">Privacy Policy and Terms of Service</string>
     <string name="copyright_app">Copyright ©QARZ-E-HASNA</string>
     <string name="support_string">It looks like you are experiencing problems with our sign up process. We are here to help so please get in touch with us.</string>
+    <string name="waiting_medical_message">Medical is preparing\nyour medicine\nPlease wait for sometime...</string>
+    <string name="medical">Pharmacist/Hospital</string>
+    <string name="Customers">Customer</string>
 
 </resources>

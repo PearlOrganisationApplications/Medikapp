@@ -2,6 +2,7 @@ package com.pearl.medicap
 
 import android.Manifest
 import android.app.Activity
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -9,6 +10,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.Window
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
@@ -17,7 +19,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pearl.medicap.Adapter.MedicineAdapter
@@ -38,6 +42,8 @@ class Customer_Dashboard :  BaseClass() {
     lateinit var more_button:ImageView
     lateinit var done_button:ImageView
     lateinit var submit_button:Button
+    lateinit var drawer_button:ImageView
+    lateinit var drawer: DrawerLayout
     lateinit var medicineAdapter: MedicineAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,24 +73,24 @@ class Customer_Dashboard :  BaseClass() {
 
     override fun initializeViews() {
         input_medicine=findViewById(R.id.input_medicineET)
-        more_button=findViewById(R.id.next_btnTV)
+       // more_button=findViewById(R.id.next_btnTV)
         done_button=findViewById(R.id.done_btnTV)
         submit_button=findViewById(R.id.submit_bt)
+        drawer_button=findViewById(R.id.sidebar)
+        drawer=findViewById(R.id.drawerr)
         binding.medicinelist.layoutManager=LinearLayoutManager(this)
     }
 
     override fun initializeClickListners() {
+      /*  drawer.addDrawerListener(action_bar_toggle)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)*/
 
         binding.imageUploadLL.setOnClickListener {
-            Toast.makeText(this,"click",Toast.LENGTH_SHORT).show()
+            //Toast.makeText(this,"click",Toast.LENGTH_SHORT).show()
             requestPermission()
         }
-
-        more_button.setOnClickListener{
-
-
-        }
         done_button.setOnClickListener{
+            if (validateEmail(input_medicine)){
             var data=input_medicine.text.toString()
             medicineList.add(data)
             medicineAdapter= MedicineAdapter(this,medicineList)
@@ -94,8 +100,23 @@ class Customer_Dashboard :  BaseClass() {
             input_medicine.text.clear()
          //   input_medicine.setHint("")
         }
+        }
         submit_button.setOnClickListener {
+            val dialog = Dialog(this)
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+            dialog.setCancelable(false)
+            dialog.setContentView(R.layout.waiting_dialog_layout)
+            var ok_button=dialog.findViewById<Button>(R.id.ok_btn)
+            ok_button.setOnClickListener {
+                dialog.dismiss()
+            }
+            dialog.show()
+
             Toast.makeText(this,"Your medicine Details successfully submitted",Toast.LENGTH_SHORT).show()
+        }
+
+        drawer_button.setOnClickListener {
+            drawer.openDrawer(GravityCompat.START)
         }
     }
     fun hideSoftKeyboard(activity: Activity, view: View) {

@@ -12,6 +12,7 @@
       android:layout_gravity="center"
       android:imeOptions="actionDone"
       android:layout_margin="4dp"
+      android:textColor="@color/App_color"
       android:id="@+id/input_medicineTV"
       android:layout_height="wrap_content"
       android:hint=""

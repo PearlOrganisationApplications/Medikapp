@@ -51,7 +51,7 @@ class RegisterActivity : BaseClass() {
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
             //            window.setStatusBarColor(Color.TRANSPARENT);
-            window.statusBarColor = resources.getColor(R.color.register_bk_color)
+            window.statusBarColor = resources.getColor(R.color.App_color)
         }
     }
 }

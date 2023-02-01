@@ -39,6 +39,7 @@ class MedicineAdapter(var context:Context,var medicineList:List<String>):
     private fun removeAt(position: Int) {
         mlist.removeAt(position)
         notifyItemRemoved(position)
-       // notifyItemRangeChanged(position)
+        notifyDataSetChanged()
+       //notifyItemRangeChanged(position)
     }
 }

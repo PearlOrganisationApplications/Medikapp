@@ -11,7 +11,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#69F0AE"
+        android:background="@color/App_color"
         android:focusableInTouchMode="true"
         android:gravity="center"
         android:layout_gravity="center">
@@ -127,7 +127,7 @@
                             android:onClick="onLoginClick"
                             android:text="Already have an account?"
                             android:textAlignment="center"
-                            android:textColor="#69F0AE"
+                            android:textColor="@color/App_color"
                             android:textSize="17sp"
                             android:textStyle="bold" />
 

@@ -47,7 +47,7 @@ class LoginActivity : BasePublic() {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
             //            window.setStatusBarColor(Color.TRANSPARENT);
           //  window.statusBarColor = resources.getColor(R.color.register_bk_color)
-            window.setStatusBarColor(Color.parseColor("#00E676"))
+            window.statusBarColor = resources.getColor(R.color.App_color)
         }
     }
 

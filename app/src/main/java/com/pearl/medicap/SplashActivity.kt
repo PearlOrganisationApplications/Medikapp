@@ -45,7 +45,7 @@ class SplashActivity : AppCompatActivity() {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
 
             // finally change the color
-            window.statusBarColor = ContextCompat.getColor(applicationContext, R.color.themeColor)
+            window.statusBarColor = resources.getColor(R.color.App_color)
         }
     }
 }

@@ -2,11 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:orientation="horizontal"
+    android:padding="4dp"
     android:background="@color/App_color"
     android:layout_height="wrap_content">
     <ImageView
         android:layout_width="50dp"
         android:id="@+id/sidebar"
+        android:padding="5dp"
         android:src="@drawable/sidebar"
         android:layout_height="40dp"
         />
