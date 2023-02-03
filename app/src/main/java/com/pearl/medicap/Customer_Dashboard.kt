@@ -63,7 +63,7 @@ class Customer_Dashboard :  BaseClass() {
         }
     }
 
-    private fun changeStatusBarColor() {
+    override fun changeStatusBarColor() {
         window.statusBarColor= resources.getColor(R.color.App_color)
     }
 

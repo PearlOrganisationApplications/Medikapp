@@ -178,6 +178,7 @@ abstract class BaseClass : AppCompatActivity() {
     protected abstract fun initializeClickListners()
     protected abstract fun initializeInputs()
     protected abstract fun initializeLabels()
+    protected abstract fun changeStatusBarColor()
 
     companion object {
         var isInternetReceiver = false

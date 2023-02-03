@@ -11,6 +11,7 @@ import android.os.Build
 import android.text.Html
 import android.content.Intent
 import android.graphics.Color
+import android.util.Log
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import android.view.WindowManager
 import androidx.viewpager.widget.PagerAdapter
@@ -95,6 +96,7 @@ class WelcomeActivity : AppCompatActivity() {
 
     private fun launchHomeScreen() {
         prefManager!!.isFirstTimeLaunch = false
+        Log.d("WelcomeActivity","WelcomeActivity")
         startActivity(Intent(this@WelcomeActivity,Choose_User_Activity::class.java))
         finish()
     }

@@ -107,7 +107,7 @@ class MainActivity : BaseClass() {
     }
 
     @SuppressLint("ObsoleteSdkInt")
-    fun changeStatusBarColor() {
+   override fun changeStatusBarColor() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             val window = window
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)

@@ -21,10 +21,11 @@ class LoginActivity : BasePublic() {
         super.onCreate(savedInstanceState)
         session = Session(this@LoginActivity)
         if (session!!.hasSession!!) {
-            startActivity(Intent(applicationContext, MainActivity::class.java))
+            //startActivity(Intent(applicationContext, MainActivity::class.java))
+            startActivity(Intent(this,Medical_Dashboard::class.java))
             finish()
         }
-        // CheckSession(getApplicationContext(),activityIn);
+
         setLayoutXml()
         val isConnected = isNetworkConnected(this.applicationContext)
         if (isConnected) {
@@ -37,18 +38,6 @@ class LoginActivity : BasePublic() {
             initializeInputs()
             printLogs("LoginActivity", "onCreate", "exitConnected")
         }
-
-        //for changing status bar icon colors
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            val window = window
-            // Making notification bar transparent
-            window.decorView.systemUiVisibility =
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-            //            window.setStatusBarColor(Color.TRANSPARENT);
-          //  window.statusBarColor = resources.getColor(R.color.register_bk_color)
-            window.statusBarColor = resources.getColor(R.color.App_color)
-        }
     }
 
     fun onLoginClick(View: View?) {
@@ -59,7 +48,18 @@ class LoginActivity : BasePublic() {
     override fun setLayoutXml() {
         setContentView(R.layout.activity_login)
     }
-
+    override fun changeStatusBarColor() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val window = window
+            // Making notification bar transparent
+            window.decorView.systemUiVisibility =
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            //            window.setStatusBarColor(Color.TRANSPARENT);
+            //  window.statusBarColor = resources.getColor(R.color.register_bk_color)
+            window.statusBarColor = resources.getColor(R.color.App_color)
+        }
+    }
     override fun initializeViews() {
         editTextPassword = findViewById(R.id.editTextPassword)
         editTextEmail = findViewById(R.id.editTextEmail)
@@ -68,15 +68,21 @@ class LoginActivity : BasePublic() {
 
     override fun initializeClickListners() {
         loginbtn!!.setOnClickListener { view: View? ->
-            startActivity(Intent(this,Customer_Dashboard::class.java))
+
             val email = editTextEmail!!.text.toString()
             val pass = editTextPassword!!.text.toString()
             // validatedata(email,pass);
-            if (email == "rajat" && pass == "123") {
+            if (email == "customer@gmail.com" && pass == "1234") {
                 session!!.hasSession = true
-                startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+               // startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                startActivity(Intent(this,Customer_Dashboard::class.java))
                 finish()
-            } else if (email == "") {
+            }
+            else if (email=="medical@gmail.com"&& pass=="1234"){
+                startActivity(Intent(this,Medical_Dashboard::class.java))
+                finish()
+            }
+            else if (email == "") {
                 setCustomError("Please Enter Email", editTextEmail!!)
             } else if (pass == "") {
                 setCustomError("Please Enter Password", editTextPassword!!)
@@ -88,4 +94,5 @@ class LoginActivity : BasePublic() {
 
     override fun initializeInputs() {}
     override fun initializeLabels() {}
+
 }
