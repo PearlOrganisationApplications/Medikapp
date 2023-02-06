@@ -3,13 +3,63 @@
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="15dp"
-    app:cardBackgroundColor="@color/App_color"
+    android:layout_margin="5dp"
+    android:id="@+id/cardview"
+    app:cardBackgroundColor="@color/white"
     android:layout_height="wrap_content">
+
     <LinearLayout
         android:layout_width="match_parent"
-
         android:layout_height="wrap_content"
         android:orientation="vertical">
+        <LinearLayout
+            android:padding="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_weight="0.6"
+                android:id="@+id/imageIV"
+                android:layout_gravity="center"
+                android:src="@drawable/pill1"
+                android:layout_height="80dp"/>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:padding="5dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Name"
+                    android:id="@+id/name"
+                    android:textStyle="bold"
+                    android:layout_margin="6dp"
+                    android:textSize="18sp"
+                    android:textAllCaps="true"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Medicine Name"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_margin="6dp"
+                    android:id="@+id/medicine_name"
+                   />
+                <TextView
+                    android:id="@+id/pills"
+                    android:layout_margin="6dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="No of pills"
+                    android:textSize="14sp"
+                    android:textAlignment="textEnd"
+                    android:textStyle="italic"
+                    android:textAllCaps="true"/>
+            </LinearLayout>
+        </LinearLayout>
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

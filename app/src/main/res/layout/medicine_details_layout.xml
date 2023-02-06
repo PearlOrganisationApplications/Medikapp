@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_marginTop="5dp"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="90dp"
+        android:id="@+id/medicineIV"
+        android:src="@drawable/pill1"
+        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:padding="4dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/pill_noTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1 pill"/>
+        <TextView
+            android:textSize="20sp"
+            android:id="@+id/medicineName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Medicine name"/>
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textSize="15sp"
+                android:id="@+id/mgTV"
+                android:layout_height="wrap_content"
+                android:text="400mg"/>
+            <TextView
+                android:textSize="15sp"
+                android:id="@+id/capsuleTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2 capsules"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

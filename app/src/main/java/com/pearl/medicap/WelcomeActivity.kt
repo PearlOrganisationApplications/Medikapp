@@ -97,7 +97,13 @@ class WelcomeActivity : AppCompatActivity() {
     private fun launchHomeScreen() {
         prefManager!!.isFirstTimeLaunch = false
         Log.d("WelcomeActivity","WelcomeActivity")
-        startActivity(Intent(this@WelcomeActivity,Choose_User_Activity::class.java))
+        if (!prefManager!!.islogin()) {
+            startActivity(Intent(this,Medical_Dashboard::class.java))
+        }
+        else{
+
+            startActivity(Intent(this@WelcomeActivity, Choose_User_Activity::class.java))
+        }
         finish()
     }
 

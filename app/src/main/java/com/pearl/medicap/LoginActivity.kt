@@ -27,6 +27,7 @@ class LoginActivity : BasePublic() {
         }
 
         setLayoutXml()
+        changeStatusBarColor()
         val isConnected = isNetworkConnected(this.applicationContext)
         if (isConnected) {
             //verifyVersion();

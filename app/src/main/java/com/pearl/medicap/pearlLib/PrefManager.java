@@ -27,5 +27,13 @@ public class PrefManager {
   
     public boolean isFirstTimeLaunch() {  
         return pref.getBoolean(IS_FIRST_TIME_LAUNCH, true);  
-    }  
+    }
+    public void setlogin(boolean isFirstTime) {
+        editor.putBoolean("login", isFirstTime);
+        editor.commit();
+    }
+
+    public boolean islogin() {
+        return pref.getBoolean("login", true);
+    }
 }  

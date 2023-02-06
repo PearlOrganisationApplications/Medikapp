@@ -9,7 +9,7 @@
         android:layout_width="50dp"
         android:id="@+id/sidebar"
         android:padding="5dp"
-        android:src="@drawable/sidebar"
+        android:src="@drawable/menu"
         android:layout_height="40dp"
         />
     <TextView
