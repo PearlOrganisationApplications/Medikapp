@@ -9,9 +9,13 @@ import android.annotation.SuppressLint
 import android.os.Build
 import android.view.View
 import android.view.WindowManager
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import com.pearl.medicap.pearlLib.BaseClass
 
 class RegisterActivity : BaseClass() {
+    lateinit var choose_user_spinner:Spinner
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setLayoutXml()
@@ -33,14 +37,20 @@ class RegisterActivity : BaseClass() {
         setContentView(R.layout.activity_register)
     }
 
-    override fun initializeViews() {}
+    override fun initializeViews() {
+        choose_user_spinner=findViewById(R.id.choose_user_spinner)
+    }
     override fun initializeClickListners() {}
     fun onLoginClick(view: View?) {
         startActivity(Intent(this, LoginActivity::class.java))
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
     }
 
-    override fun initializeInputs() {}
+    override fun initializeInputs() {
+        var adapter=ArrayAdapter.createFromResource(this,R.array.user_type,android.R.layout.simple_spinner_item)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item)
+        choose_user_spinner.adapter=adapter
+    }
     override fun initializeLabels() {}
     @SuppressLint("ObsoleteSdkInt")
     override fun changeStatusBarColor() {

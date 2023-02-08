@@ -30,11 +30,13 @@
         <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:textAlignment="center"
             android:layout_height="wrap_content"
             android:text="Dosage"/>
         <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:textAlignment="center"
             android:layout_height="wrap_content"
             android:text="Dosage"/>
 
@@ -54,6 +56,7 @@
             android:background="@drawable/rectangle_borderbg"
             android:layout_height="wrap_content"
             android:hint="Dosage"/>
+
         <EditText
             android:padding="8dp"
             android:layout_margin="4dp"

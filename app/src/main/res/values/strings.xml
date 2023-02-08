@@ -25,5 +25,11 @@
     <string name="waiting_medical_message">Medical is preparing\nyour medicine\nPlease wait for sometime...</string>
     <string name="medical">Pharmacist/Hospital</string>
     <string name="Customers">Customer</string>
+    <string name="dob">DOB</string>
 
+    <string-array name="user_type">
+        <item>Select user type</item>
+        <item>Medical</item>
+        <item>Customer</item>
+    </string-array>
 </resources>
