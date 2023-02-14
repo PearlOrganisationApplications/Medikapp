@@ -3,7 +3,7 @@ package com.pearl.medicap.pearlLib
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
-import com.pearl.medicap.MainActivity
+import com.pearl.medicap.UI.MainActivity
 
 abstract class BasePublic : BaseClass() {
     fun CheckSession(baseApbcContext: Context?, activityIn: AppCompatActivity) {

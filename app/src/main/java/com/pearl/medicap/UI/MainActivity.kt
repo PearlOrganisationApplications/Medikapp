@@ -1,4 +1,4 @@
-package com.pearl.medicap
+package com.pearl.medicap.UI
 
 import androidx.viewpager.widget.ViewPager
 import android.widget.ProgressBar
@@ -15,6 +15,7 @@ import android.widget.Toast
 import android.os.Looper
 import android.widget.ImageView
 import androidx.appcompat.app.ActionBar
+import com.pearl.medicap.R
 import com.pearl.medicap.pearlLib.BaseClass
 import java.util.*
 

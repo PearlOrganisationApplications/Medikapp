@@ -183,4 +183,6 @@ abstract class BaseClass : AppCompatActivity() {
     companion object {
         var isInternetReceiver = false
     }
+
+
 }

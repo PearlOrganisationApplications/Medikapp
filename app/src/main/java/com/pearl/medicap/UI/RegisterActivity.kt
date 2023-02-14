@@ -1,10 +1,9 @@
-package com.pearl.medicap
+package com.pearl.medicap.UI
 
 
 import android.os.Bundle
 import com.pearl.medicap.R
 import android.content.Intent
-import com.pearl.medicap.LoginActivity
 import android.annotation.SuppressLint
 import android.os.Build
 import android.view.View

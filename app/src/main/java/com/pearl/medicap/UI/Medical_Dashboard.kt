@@ -1,27 +1,36 @@
-package com.pearl.medicap
+package com.pearl.medicap.UI
 
-import androidx.appcompat.app.AppCompatActivity
+import android.app.AlertDialog
+import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.navigation.NavigationView
 import com.pearl.medicap.Adapter.CustomerDetailsAdapter
+import com.pearl.medicap.R
 import com.pearl.medicap.model.CustomerMedicine
 import com.pearl.medicap.pearlLib.BaseClass
+import com.pearl.medicap.pearlLib.PrefManager
 
 class Medical_Dashboard : BaseClass() {
     lateinit var drawer_button: ImageView
     lateinit var drawer: DrawerLayout
     lateinit var customerDetailsAdapter: CustomerDetailsAdapter
     lateinit var customerDetailsRecylerview:RecyclerView
+    lateinit var draw_layout:NavigationView
     var customer_list=ArrayList<CustomerMedicine>()
+    lateinit var prefManager:PrefManager
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        prefManager= PrefManager(this)
+        prefManager.setMedicallogin(false)
 
         setLayoutXml()
         changeStatusBarColor()
@@ -36,6 +45,9 @@ class Medical_Dashboard : BaseClass() {
             initializeInputs()
             printLogs("Customer_Dashboard", "onCreate", "exitConnected")
         }
+        else{
+            Toast.makeText(this,"Please connnect with internet", Toast.LENGTH_SHORT).show()
+        }
 
     }
 
@@ -49,12 +61,31 @@ class Medical_Dashboard : BaseClass() {
     override fun initializeViews() {
         drawer_button=findViewById(R.id.sidebar)
         drawer=findViewById(R.id.drawer_layout)
+        draw_layout=findViewById(R.id.draw_layout)
         customerDetailsRecylerview=findViewById(R.id.customer_medicine_details)
     }
 
     override fun initializeClickListners() {
         drawer_button.setOnClickListener {
             drawer.openDrawer(GravityCompat.START)
+        }
+        draw_layout.menu.findItem(R.id.logout).setOnMenuItemClickListener {
+            val alertDialog2 = AlertDialog.Builder(this)
+            alertDialog2.setTitle("Alert...")
+            alertDialog2.setMessage("Are you sure you want to exit ?")
+            alertDialog2.setPositiveButton("Yes") { dialog: DialogInterface?, which: Int ->
+                Toast.makeText(this,"Logout Successfully",Toast.LENGTH_SHORT).show()
+                //prefManager.setCustomerlogin(true)
+
+                startActivity(Intent(this, LoginActivity::class.java))
+            }
+            alertDialog2.setNegativeButton(
+                "Cancel"
+            ) { dialog: DialogInterface, which: Int -> dialog.cancel() }
+            alertDialog2.show()
+            //  finish();
+            true
+
         }
     }
 
@@ -70,7 +101,6 @@ class Medical_Dashboard : BaseClass() {
         customer_list.add(CustomerMedicine(R.drawable.pill1,"Sagar Bisht","Cyclobenzaprine,Cymbalta,jdjf...","20 pills"))
         customerDetailsAdapter= CustomerDetailsAdapter(this,customer_list)
         customerDetailsRecylerview.adapter=customerDetailsAdapter
-
     }
 
     override fun initializeLabels() {

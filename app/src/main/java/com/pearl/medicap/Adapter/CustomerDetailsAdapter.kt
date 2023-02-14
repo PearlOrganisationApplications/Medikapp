@@ -10,7 +10,7 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.pearl.medicap.CustomerDetailsActivity
+import com.pearl.medicap.UI.CustomerDetailsActivity
 import com.pearl.medicap.R
 import com.pearl.medicap.model.CustomerMedicine
 
@@ -38,7 +38,7 @@ class CustomerDetailsAdapter(var context:Context,var details_list:List<CustomerM
         holder.pills.text=data.pills
         holder.itemView.setOnClickListener {
             holder.cardview.setBackground(context.getDrawable(R.drawable.booking_box_outline))
-            context.startActivity(Intent(context,CustomerDetailsActivity::class.java))
+            context.startActivity(Intent(context, CustomerDetailsActivity::class.java))
         }
     }
 

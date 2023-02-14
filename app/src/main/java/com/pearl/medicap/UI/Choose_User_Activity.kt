@@ -1,13 +1,13 @@
-package com.pearl.medicap
+package com.pearl.medicap.UI
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import com.pearl.medicap.R
 import com.pearl.medicap.pearlLib.BaseClass
 import com.pearl.medicap.pearlLib.PrefManager
 
@@ -37,6 +37,9 @@ class Choose_User_Activity : BaseClass() {
             initializeInputs()
             printLogs("LoginActivity", "onCreate", "exitConnected")
         }
+        else{
+            Toast.makeText(this,"Please connnect with internet", Toast.LENGTH_SHORT).show()
+        }
 
     }
 
@@ -47,6 +50,8 @@ class Choose_User_Activity : BaseClass() {
     override fun changeStatusBarColor() {
         window.statusBarColor=resources.getColor(R.color.App_color)
     }
+
+
 
     override fun initializeViews() {
         customer_btn =findViewById<TextView>(R.id.customers_btn)
@@ -60,15 +65,16 @@ class Choose_User_Activity : BaseClass() {
     override fun initializeClickListners() {
         ll_medical.setOnClickListener {
             check_medical.visibility= View.VISIBLE
-            prefManager.setlogin(false)
+            prefManager.setCustomerlogin(false)
             ll_medical.setBackgroundResource(R.drawable.background)
-            startActivity(Intent(this,LoginActivity::class.java))
+            startActivity(Intent(this, LoginActivity::class.java))
             //Toast.makeText(this,"Medical is in progress",Toast.LENGTH_SHORT).show()
         }
         ll_customer.setOnClickListener {
+            prefManager.setMedicallogin(false)
             check_customer.visibility= View.VISIBLE
             ll_customer.setBackgroundResource(R.drawable.background)
-            startActivity(Intent(this,LoginActivity::class.java))
+            startActivity(Intent(this, LoginActivity::class.java))
         }
 
         /*   continue_button.setOnClickListener {

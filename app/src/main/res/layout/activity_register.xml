@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".users.RegisterActivity">
-
+    android:fillViewport="true"
+   >
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".users.RegisterActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -85,6 +90,8 @@
                                 android:id="@+id/NameET"
                                 style="@style/modifiedEditText"
                                 android:hint="Name"
+                                android:padding="12dp"
+                                android:background="@drawable/rectangle_borderbg"
                                 android:inputType="textPersonName"
                                 android:maxLines="1" />
                         </com.google.android.material.textfield.TextInputLayout>
@@ -98,6 +105,8 @@
                                 android:id="@+id/emailET"
                                 style="@style/modifiedEditText"
                                 android:hint="@string/login_email_hint"
+                                android:padding="12dp"
+                                android:background="@drawable/rectangle_borderbg"
                                 android:inputType="textEmailAddress"
                                 android:maxLines="1" />
                         </com.google.android.material.textfield.TextInputLayout>
@@ -111,6 +120,8 @@
                                 android:id="@+id/MobileET"
                                 style="@style/modifiedEditText"
                                 android:hint="Mobile Number"
+                                android:padding="12dp"
+                                android:background="@drawable/rectangle_borderbg"
                                 android:inputType="phone"
                                 android:maxLines="1" />
                         </com.google.android.material.textfield.TextInputLayout>
@@ -124,6 +135,8 @@
                                 android:id="@+id/dobET"
                                 style="@style/modifiedEditText"
                                 android:hint="@string/dob"
+                                android:padding="12dp"
+                                android:background="@drawable/rectangle_borderbg"
                                 android:inputType="textPassword"
                                 android:maxLines="1" />
                         </com.google.android.material.textfield.TextInputLayout>
@@ -137,6 +150,8 @@
                                 android:id="@+id/passwordET"
                                 style="@style/modifiedEditText"
                                 android:hint="@string/login_password_hint"
+                                android:padding="12dp"
+                                android:background="@drawable/rectangle_borderbg"
                                 android:inputType="textPassword"
                                 android:maxLines="1" />
                         </com.google.android.material.textfield.TextInputLayout>
@@ -241,4 +256,5 @@
         android:id="@+id/no_internet"
         layout="@layout/no_internet_connection"
         android:visibility="gone"/>
-</RelativeLayout>
+    </LinearLayout>
+</ScrollView>

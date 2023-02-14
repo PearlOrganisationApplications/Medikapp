@@ -1,21 +1,21 @@
-package com.pearl.medicap
+package com.pearl.medicap.UI
 
 import android.Manifest
 import android.app.Activity
+import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.Window
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -26,9 +26,11 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pearl.medicap.Adapter.MedicineAdapter
 import com.pearl.medicap.Adapter.MultipleImageAdapter
+import com.pearl.medicap.R
 import com.pearl.medicap.databinding.ActivityCustomerDashboardBinding
 import com.pearl.medicap.model.MultipleImage
 import com.pearl.medicap.pearlLib.BaseClass
+import com.pearl.medicap.pearlLib.PrefManager
 
 
 class Customer_Dashboard :  BaseClass() {
@@ -45,10 +47,13 @@ class Customer_Dashboard :  BaseClass() {
     lateinit var drawer_button:ImageView
     lateinit var drawer: DrawerLayout
     lateinit var medicineAdapter: MedicineAdapter
+    lateinit var prefManager: PrefManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setLayoutXml()
+        changeStatusBarColor()
         val isConnected = isNetworkConnected(this.applicationContext)
         if (isConnected) {
             //verifyVersion();
@@ -58,8 +63,10 @@ class Customer_Dashboard :  BaseClass() {
             initializeClickListners()
             initializeLabels()
             initializeInputs()
-            changeStatusBarColor()
             printLogs("Customer_Dashboard", "onCreate", "exitConnected")
+        }
+        else{
+            Toast.makeText(this,"Please connnect with internet",Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -108,6 +115,7 @@ class Customer_Dashboard :  BaseClass() {
             dialog.setContentView(R.layout.waiting_dialog_layout)
             var ok_button=dialog.findViewById<Button>(R.id.ok_btn)
             ok_button.setOnClickListener {
+                startActivity(Intent(this,CustomerBillDetailsActvity::class.java))
                 dialog.dismiss()
             }
             dialog.show()
@@ -118,6 +126,28 @@ class Customer_Dashboard :  BaseClass() {
         drawer_button.setOnClickListener {
             drawer.openDrawer(GravityCompat.START)
         }
+        binding.drawLayout.menu.findItem(R.id.logout).setOnMenuItemClickListener {
+
+            //drawer.closeDrawer(GravityCompat.END)
+            val alertDialog2 = AlertDialog.Builder(this)
+            alertDialog2.setTitle("Alert...")
+            alertDialog2.setMessage("Are you sure you want to exit ?")
+            alertDialog2.setPositiveButton("Yes") { dialog: DialogInterface?, which: Int ->
+                Toast.makeText(this,"Logout Successfully",Toast.LENGTH_SHORT).show()
+                //prefManager.setCustomerlogin(true)
+
+                startActivity(Intent(this, LoginActivity::class.java))
+            }
+            alertDialog2.setNegativeButton(
+                "Cancel"
+            ) { dialog: DialogInterface, which: Int -> dialog.cancel() }
+            alertDialog2.show()
+               //  finish();
+            true
+
+        }
+
+
     }
     fun hideSoftKeyboard(activity: Activity, view: View) {
         val imm: InputMethodManager =
@@ -126,6 +156,7 @@ class Customer_Dashboard :  BaseClass() {
     }
 
     override fun initializeInputs() {
+        prefManager=PrefManager(this)
 
     }
 

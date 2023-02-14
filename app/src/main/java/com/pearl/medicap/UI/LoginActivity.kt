@@ -1,15 +1,16 @@
-package com.pearl.medicap
+package com.pearl.medicap.UI
 
 import com.pearl.medicap.pearlLib.BasePublic
 import android.widget.EditText
 import android.widget.TextView
 import android.os.Bundle
 import android.content.Intent
-import android.graphics.Color
 import android.os.Build
 import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
+import com.pearl.medicap.R
+import com.pearl.medicap.pearlLib.PrefManager
 import com.pearl.medicap.pearlLib.Session
 
 class LoginActivity : BasePublic() {
@@ -17,12 +18,20 @@ class LoginActivity : BasePublic() {
     var editTextPassword: EditText? = null
     var loginbtn: TextView? = null
     override var session: Session? = null
+    lateinit var prefManager: PrefManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         session = Session(this@LoginActivity)
+        prefManager=PrefManager(this)
         if (session!!.hasSession!!) {
             //startActivity(Intent(applicationContext, MainActivity::class.java))
-            startActivity(Intent(this,Medical_Dashboard::class.java))
+            if (prefManager.isCustomerlogin){
+                prefManager.setCustomerlogin(true)
+                startActivity(Intent(this, Customer_Dashboard::class.java))
+            }
+            else if(prefManager.isMedicallogin){
+                startActivity(Intent(this, Medical_Dashboard::class.java))
+            }
             finish()
         }
 
@@ -38,6 +47,9 @@ class LoginActivity : BasePublic() {
             initializeLabels()
             initializeInputs()
             printLogs("LoginActivity", "onCreate", "exitConnected")
+        }
+        else{
+            Toast.makeText(this,"Please connnect with internet",Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -76,11 +88,11 @@ class LoginActivity : BasePublic() {
             if (email == "customer@gmail.com" && pass == "1234") {
                 session!!.hasSession = true
                // startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-                startActivity(Intent(this,Customer_Dashboard::class.java))
+                startActivity(Intent(this, Customer_Dashboard::class.java))
                 finish()
             }
             else if (email=="medical@gmail.com"&& pass=="1234"){
-                startActivity(Intent(this,Medical_Dashboard::class.java))
+                startActivity(Intent(this, Medical_Dashboard::class.java))
                 finish()
             }
             else if (email == "") {

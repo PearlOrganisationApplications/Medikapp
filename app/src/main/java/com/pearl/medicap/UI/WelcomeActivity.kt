@@ -1,4 +1,4 @@
-package com.pearl.medicap
+package com.pearl.medicap.UI
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
@@ -10,7 +10,6 @@ import android.os.Bundle
 import android.os.Build
 import android.text.Html
 import android.content.Intent
-import android.graphics.Color
 import android.util.Log
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import android.view.WindowManager
@@ -19,6 +18,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import com.pearl.medicap.R
 
 class WelcomeActivity : AppCompatActivity() {
     lateinit var viewPager: ViewPager
@@ -97,13 +97,15 @@ class WelcomeActivity : AppCompatActivity() {
     private fun launchHomeScreen() {
         prefManager!!.isFirstTimeLaunch = false
         Log.d("WelcomeActivity","WelcomeActivity")
-        if (!prefManager!!.islogin()) {
-            startActivity(Intent(this,Medical_Dashboard::class.java))
+     /*   if (!prefManager!!.isCustomerlogin()) {
+            startActivity(Intent(this, Medical_Dashboard::class.java))
         }
-        else{
-
-            startActivity(Intent(this@WelcomeActivity, Choose_User_Activity::class.java))
+        else if (!prefManager!!.isMedicallogin){
+            startActivity(Intent(this, Customer_Dashboard::class.java))
         }
+        else{*/
+            startActivity(Intent(this@WelcomeActivity, LoginActivity::class.java))
+        //}
         finish()
     }
 

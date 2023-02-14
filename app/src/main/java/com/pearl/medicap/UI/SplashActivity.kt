@@ -1,14 +1,12 @@
-package com.pearl.medicap
+package com.pearl.medicap.UI
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.pearl.medicap.R
 import android.content.Intent
-import com.pearl.medicap.WelcomeActivity
 import android.annotation.SuppressLint
 import android.os.Build
 import android.view.WindowManager
-import androidx.core.content.ContextCompat
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

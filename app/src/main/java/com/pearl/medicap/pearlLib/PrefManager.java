@@ -28,12 +28,21 @@ public class PrefManager {
     public boolean isFirstTimeLaunch() {  
         return pref.getBoolean(IS_FIRST_TIME_LAUNCH, true);  
     }
-    public void setlogin(boolean isFirstTime) {
-        editor.putBoolean("login", isFirstTime);
+    public void setCustomerlogin(boolean isFirstTime) {
+        editor.putBoolean("Clogin", isFirstTime);
         editor.commit();
     }
 
-    public boolean islogin() {
-        return pref.getBoolean("login", true);
+    public boolean isCustomerlogin() {
+        return pref.getBoolean("Clogin", true);
+    }
+
+    public void setMedicallogin(boolean isFirstTime) {
+        editor.putBoolean("Dlogin", isFirstTime);
+        editor.commit();
+    }
+
+    public boolean isMedicallogin() {
+        return pref.getBoolean("Dlogin", true);
     }
 }  
