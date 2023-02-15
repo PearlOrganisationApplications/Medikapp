@@ -145,11 +145,26 @@
 
   </LinearLayout>
 
+  <TextView
+      android:id="@+id/payNow_btn"
+      android:layout_width="150dp"
+      android:layout_height="wrap_content"
+      android:background="@drawable/nav_background_curved"
+      android:padding="8dp"
+      android:text="Pay Now"
+      android:layout_margin="5dp"
+      android:textAlignment="center"
+      android:textColor="@color/black"
+      android:textSize="16sp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent" />
   <LinearLayout
       android:id="@+id/llbutton_layout"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_margin="10dp"
+      android:visibility="gone"
       android:layout_marginBottom="428dp"
       android:orientation="horizontal"
       app:layout_constraintBottom_toBottomOf="parent"

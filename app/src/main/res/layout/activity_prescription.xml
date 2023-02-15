@@ -13,11 +13,6 @@
     android:padding="5dp"
     android:layout_height="match_parent"
     tools:context=".UI.PrescriptionActivity">
-    <AutoCompleteTextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/autotextview"/>
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -37,9 +32,23 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/rectangle_borderbg"
         android:layout_width="match_parent"
-        android:padding="3dp"
+        android:padding="5dp"
         android:layout_height="wrap_content"
         android:hint="enter medicine name"/>
+    <EditText
+        android:layout_margin="5dp"
+        android:id="@+id/medicine_quantityET"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rectangle_borderbg"
+        android:layout_width="match_parent"
+        android:padding="5dp"
+        android:layout_height="wrap_content"
+        android:hint="enter medicine Quantity"/>
+    <LinearLayout
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -134,6 +143,7 @@
             android:layout_height="wrap_content"
             android:hint="6month"/>
 
+    </LinearLayout>
     </LinearLayout>
     <LinearLayout
         android:layout_marginTop="20dp"

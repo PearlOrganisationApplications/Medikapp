@@ -12,7 +12,9 @@
         android:id="@+id/setting"
         android:title="Setting"/>
 
-
+    <item
+        android:id="@+id/lab_test"
+        android:title="Lab Test"/>
             <item
                 android:id="@+id/term_condition"
                 android:title="Term Condition"/>

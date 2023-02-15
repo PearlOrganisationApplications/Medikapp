@@ -25,8 +25,9 @@ class LoginActivity : BasePublic() {
         prefManager=PrefManager(this)
         if (session!!.hasSession!!) {
             //startActivity(Intent(applicationContext, MainActivity::class.java))
+
             if (prefManager.isCustomerlogin){
-                prefManager.setCustomerlogin(true)
+
                 startActivity(Intent(this, Customer_Dashboard::class.java))
             }
             else if(prefManager.isMedicallogin){

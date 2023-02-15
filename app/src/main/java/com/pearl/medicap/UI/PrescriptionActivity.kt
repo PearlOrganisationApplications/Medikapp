@@ -58,12 +58,12 @@ class PrescriptionActivity : AppCompatActivity() {
             val result = buildString{
                 append(medicine_name,",",dosage,",",frequency,",",",",duration,notes)
             }
-            var timeET=findViewById<AutoCompleteTextView>(R.id.autotextview)
+       /*     var timeET=findViewById<AutoCompleteTextView>(R.id.autotextview)
             var time_schedule=resources.getStringArray(R.array.time_schedule)
             var adapterr = ArrayAdapter(this,
                 android.R.layout.select_dialog_item, time_schedule)
             timeET.threshold = 1
-         timeET.setAdapter(adapterr)
+         timeET.setAdapter(adapterr)*/
 
             binding.medicineNameET.text.clear()
             binding.dosageET.text.clear()
@@ -83,7 +83,6 @@ class PrescriptionActivity : AppCompatActivity() {
             dialog.setCancelable(true)
             dialog.show()
         }
-
 
     }
 

@@ -21,6 +21,7 @@
                 android:id="@+id/customer_medicine_details"/>
 
         </LinearLayout>
+
     </ScrollView>
 
     <com.google.android.material.navigation.NavigationView

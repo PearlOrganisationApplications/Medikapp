@@ -16,14 +16,31 @@
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:ignore="MissingClass">
     <include layout="@layout/top_drawer_layout"/>
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="center"
+        android:visibility="gone"
         android:layout_marginTop="5dp"
         android:src="@mipmap/appicon"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:visibility="visible"
+        android:layout_height="wrap_content"
+        android:id="@+id/banner_list"/>
+    <RelativeLayout
+        android:background="#C5E1A5"
+        android:padding="7dp"
+        android:layout_margin="7dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -111,16 +128,7 @@
             android:id="@+id/medicinelist"/>
 
 </LinearLayout>
-    <RelativeLayout
-        android:background="#C5E1A5"
-        android:padding="7dp"
-        android:layout_margin="7dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </RelativeLayout>
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

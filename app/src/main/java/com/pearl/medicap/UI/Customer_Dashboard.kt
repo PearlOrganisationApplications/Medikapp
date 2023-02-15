@@ -24,6 +24,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.pearl.medicap.Adapter.BannerAdapter
 import com.pearl.medicap.Adapter.MedicineAdapter
 import com.pearl.medicap.Adapter.MultipleImageAdapter
 import com.pearl.medicap.R
@@ -31,6 +32,7 @@ import com.pearl.medicap.databinding.ActivityCustomerDashboardBinding
 import com.pearl.medicap.model.MultipleImage
 import com.pearl.medicap.pearlLib.BaseClass
 import com.pearl.medicap.pearlLib.PrefManager
+import java.io.File
 
 
 class Customer_Dashboard :  BaseClass() {
@@ -38,8 +40,10 @@ class Customer_Dashboard :  BaseClass() {
     override var STORAGE_PERMISSION_CODE=1
     lateinit var multipleImageAdapter: MultipleImageAdapter
 
+
     var imagelist=ArrayList<MultipleImage>()
     var medicineList=ArrayList<String>()
+    var banner_lisst=ArrayList<Int>()
     lateinit var input_medicine:EditText
     lateinit var more_button:ImageView
     lateinit var done_button:ImageView
@@ -48,9 +52,13 @@ class Customer_Dashboard :  BaseClass() {
     lateinit var drawer: DrawerLayout
     lateinit var medicineAdapter: MedicineAdapter
     lateinit var prefManager: PrefManager
+    lateinit var bannerAdapter: BannerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        prefManager= PrefManager(this)
+        //prefManager.setCustomerlogin(false)
+        //prefManager.setCustomerlogin(false)
 
         setLayoutXml()
         changeStatusBarColor()
@@ -134,8 +142,7 @@ class Customer_Dashboard :  BaseClass() {
             alertDialog2.setMessage("Are you sure you want to exit ?")
             alertDialog2.setPositiveButton("Yes") { dialog: DialogInterface?, which: Int ->
                 Toast.makeText(this,"Logout Successfully",Toast.LENGTH_SHORT).show()
-                //prefManager.setCustomerlogin(true)
-
+                //prefManager.setCustomerlogin(false)
                 startActivity(Intent(this, LoginActivity::class.java))
             }
             alertDialog2.setNegativeButton(
@@ -146,7 +153,11 @@ class Customer_Dashboard :  BaseClass() {
             true
 
         }
-
+        binding.drawLayout.menu.findItem(R.id.lab_test).setOnMenuItemClickListener {
+            Toast.makeText(this,"lab test",Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this,TestLabActivity::class.java))
+            true
+        }
 
     }
     fun hideSoftKeyboard(activity: Activity, view: View) {
@@ -157,6 +168,14 @@ class Customer_Dashboard :  BaseClass() {
 
     override fun initializeInputs() {
         prefManager=PrefManager(this)
+        binding.bannerList.layoutManager=LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
+        banner_lisst.add(R.drawable.banner1)
+        banner_lisst.add(R.drawable.banner1)
+        banner_lisst.add(R.drawable.banner1)
+        banner_lisst.add(R.drawable.banner1)
+        banner_lisst.add(R.drawable.banner1)
+        var bannerAdapter=BannerAdapter(this,banner_lisst)
+        binding.bannerList.adapter=bannerAdapter
 
     }
 
@@ -201,6 +220,40 @@ class Customer_Dashboard :  BaseClass() {
                             binding.imagelist.adapter=multipleImageAdapter
                         }
                     }
+                }
+            }
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        clearApplicationData()
+
+    }
+
+    fun deleteDir(dir: File?): Boolean {
+        if (dir != null && dir.isDirectory()) {
+            val children: Array<String> = dir.list()
+            var i = 0
+            while (i < children.size) {
+                val success = deleteDir(File(dir, children[i]))
+                if (!success) {
+                    return false
+                }
+                i++
+            }
+        }
+        assert(dir != null)
+        return dir!!.delete()
+    }
+    fun clearApplicationData() {
+        val cache = cacheDir
+        val appDir = File(cache.parent)
+        if (appDir.exists()) {
+            val children = appDir.list()
+            for (s in children) {
+                if (s != "lib") {
+                    deleteDir(File(appDir, s))
                 }
             }
         }
