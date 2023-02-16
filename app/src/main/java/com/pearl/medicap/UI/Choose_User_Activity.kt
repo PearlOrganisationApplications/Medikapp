@@ -65,7 +65,11 @@ class Choose_User_Activity : BaseClass() {
     override fun initializeClickListners() {
         ll_medical.setOnClickListener {
             check_medical.visibility= View.VISIBLE
+<<<<<<< HEAD
             prefManager.isCustomerlogin = false
+=======
+            prefManager.isCustomerlogin = true
+>>>>>>> 7c0563f8a09b49851022142e3f74e6d9f131434a
             ll_medical.setBackgroundResource(R.drawable.background)
             startActivity(Intent(this, LoginActivity::class.java))
             //Toast.makeText(this,"Medical is in progress",Toast.LENGTH_SHORT).show()
