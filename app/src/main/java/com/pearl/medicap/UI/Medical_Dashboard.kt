@@ -30,7 +30,7 @@ class Medical_Dashboard : BaseClass() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         prefManager= PrefManager(this)
-        prefManager.setMedicallogin(false)
+        prefManager.isMedicallogin = false
 
         setLayoutXml()
         changeStatusBarColor()

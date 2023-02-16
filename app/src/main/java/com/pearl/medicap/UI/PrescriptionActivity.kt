@@ -52,8 +52,13 @@ class PrescriptionActivity : AppCompatActivity() {
             var discount=binding.discountET.text.toString()
             var subtotal=binding.subtotalET.text.toString()
             var gst=binding.gstET.text.toString()
-            var total=subtotal.toInt()+discount.toInt()-gst.toInt()
-            binding.totalET.setText(total.toString())
+            if(subtotal.toInt() != 0 || discount.toInt()!= 0 || gst.toInt()!= 0){
+                var total=subtotal.toInt()+discount.toInt()-gst.toInt()
+                binding.totalET.setText(total.toString())
+            }else{
+                Toast.makeText(this,"Please fill All the details",Toast.LENGTH_SHORT).show()
+            }
+
 
             val result = buildString{
                 append(medicine_name,",",dosage,",",frequency,",",",",duration,notes)
