@@ -1,5 +1,6 @@
 package com.pearl.medicap.UI
 
+import android.Manifest
 import com.pearl.medicap.pearlLib.BasePublic
 import android.widget.EditText
 import android.widget.TextView
@@ -9,15 +10,24 @@ import android.os.Build
 import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import com.google.android.gms.common.ConnectionResult
+import com.google.android.gms.common.api.GoogleApiClient
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.pearl.medicap.R
 import com.pearl.medicap.pearlLib.PrefManager
 import com.pearl.medicap.pearlLib.Session
 
-class LoginActivity : BasePublic() {
+class LoginActivity : BasePublic(),GoogleApiClient.OnConnectionFailedListener,
+    GoogleApiClient.ConnectionCallbacks {
     var editTextEmail: EditText? = null
     var editTextPassword: EditText? = null
     var loginbtn: TextView? = null
     override var session: Session? = null
+    lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+    private val REQUEST_LOCATION = 1
+    private var mGoogleApiClient: GoogleApiClient? = null
     lateinit var prefManager: PrefManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +40,8 @@ class LoginActivity : BasePublic() {
 
                 startActivity(Intent(this, Customer_Dashboard::class.java))
             }
-            else if(prefManager.isMedicallogin){
+           else
+            if(prefManager.isMedicallogin){
                 startActivity(Intent(this, Medical_Dashboard::class.java))
             }
             finish()
@@ -106,7 +117,26 @@ class LoginActivity : BasePublic() {
         }
     }
 
-    override fun initializeInputs() {}
+    override fun initializeInputs() {
+        fusedLocationProviderClient= LocationServices.getFusedLocationProviderClient(this)
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.WRITE_EXTERNAL_STORAGE), REQUEST_LOCATION)
+        mGoogleApiClient =
+            GoogleApiClient.Builder(this).addApi(LocationServices.API).addConnectionCallbacks(this@LoginActivity)
+                .addOnConnectionFailedListener(this@LoginActivity).build()
+    }
     override fun initializeLabels() {}
+    override fun onConnectionFailed(p0: ConnectionResult) {
+
+    }
+
+    override fun onConnected(p0: Bundle?) {
+
+    }
+
+    override fun onConnectionSuspended(p0: Int) {
+
+    }
 
 }

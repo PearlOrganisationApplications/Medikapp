@@ -10,6 +10,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.View
 import android.view.Window
 import android.view.inputmethod.InputMethodManager
@@ -53,6 +54,7 @@ class Customer_Dashboard :  BaseClass() {
     lateinit var medicineAdapter: MedicineAdapter
     lateinit var prefManager: PrefManager
     lateinit var bannerAdapter: BannerAdapter
+    private var timer: CountDownTimer?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -168,14 +170,25 @@ class Customer_Dashboard :  BaseClass() {
 
     override fun initializeInputs() {
         prefManager=PrefManager(this)
-        binding.bannerList.layoutManager=LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
-        banner_lisst.add(R.drawable.banner1)
-        banner_lisst.add(R.drawable.banner1)
-        banner_lisst.add(R.drawable.banner1)
-        banner_lisst.add(R.drawable.banner1)
-        banner_lisst.add(R.drawable.banner1)
-        var bannerAdapter=BannerAdapter(this,banner_lisst)
-        binding.bannerList.adapter=bannerAdapter
+
+
+
+        timer = object: CountDownTimer(10000, 3000) {
+            override fun onTick(millisUntilFinished: Long) {
+                binding.bannerList.layoutManager=LinearLayoutManager(this@Customer_Dashboard,LinearLayoutManager.HORIZONTAL,false)
+                banner_lisst.add(R.drawable.banner1)
+                banner_lisst.add(R.drawable.banner2)
+                banner_lisst.add(R.drawable.banner1)
+                banner_lisst.add(R.drawable.banner1)
+                banner_lisst.add(R.drawable.banner1)
+                var bannerAdapter=BannerAdapter(this@Customer_Dashboard,banner_lisst)
+                binding.bannerList.adapter=bannerAdapter
+            }
+
+            override fun onFinish() {
+            }
+        }
+        (timer as CountDownTimer).start()
 
     }
 
