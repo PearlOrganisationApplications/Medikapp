@@ -5,8 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-   >
+    android:fillViewport="true">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -81,88 +80,203 @@
                                 android:maxLines="1" />
                         </LinearLayout>
 
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/textInputName"
-                            style="@style/parent"
-                            android:layout_marginTop="@dimen/loginViewsMargin">
+                        <LinearLayout
+                            android:id="@+id/ll_userform"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="gone">
 
-                            <EditText
-                                android:id="@+id/NameET"
-                                style="@style/modifiedEditText"
-                                android:hint="Name"
-                                android:padding="12dp"
-                                android:background="@drawable/rectangle_borderbg"
-                                android:inputType="textPersonName"
-                                android:maxLines="1" />
-                        </com.google.android.material.textfield.TextInputLayout>
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/textInputName"
+                                style="@style/parent"
+                                android:layout_marginTop="@dimen/loginViewsMargin">
 
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/textInputEmail"
-                            style="@style/parent"
-                            android:layout_marginTop="10dp">
+                                <EditText
+                                    android:id="@+id/NameET"
+                                    style="@style/modifiedEditText"
+                                    android:hint="Name"
+                                    android:padding="12dp"
+                                    android:background="@drawable/rectangle_borderbg"
+                                    android:inputType="textPersonName"
+                                    android:maxLines="1" />
+                            </com.google.android.material.textfield.TextInputLayout>
 
-                            <EditText
-                                android:id="@+id/emailET"
-                                style="@style/modifiedEditText"
-                                android:hint="@string/login_email_hint"
-                                android:padding="12dp"
-                                android:background="@drawable/rectangle_borderbg"
-                                android:inputType="textEmailAddress"
-                                android:maxLines="1" />
-                        </com.google.android.material.textfield.TextInputLayout>
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/textInputEmail"
+                                style="@style/parent"
+                                android:layout_marginTop="10dp">
 
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/textInputMobile"
-                            style="@style/parent"
-                            android:layout_marginTop="10dp">
+                                <EditText
+                                    android:id="@+id/emailET"
+                                    style="@style/modifiedEditText"
+                                    android:hint="@string/login_email_hint"
+                                    android:padding="12dp"
+                                    android:background="@drawable/rectangle_borderbg"
+                                    android:inputType="textEmailAddress"
+                                    android:maxLines="1" />
+                            </com.google.android.material.textfield.TextInputLayout>
 
-                            <EditText
-                                android:id="@+id/MobileET"
-                                style="@style/modifiedEditText"
-                                android:hint="Mobile Number"
-                                android:padding="12dp"
-                                android:background="@drawable/rectangle_borderbg"
-                                android:inputType="phone"
-                                android:maxLines="1" />
-                        </com.google.android.material.textfield.TextInputLayout>
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/textInputMobile"
+                                style="@style/parent"
+                                android:layout_marginTop="10dp">
 
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/textInputdob"
-                            style="@style/parent"
-                            android:layout_marginTop="10dp">
+                                <EditText
+                                    android:id="@+id/MobileET"
+                                    style="@style/modifiedEditText"
+                                    android:hint="Mobile Number"
+                                    android:padding="12dp"
+                                    android:background="@drawable/rectangle_borderbg"
+                                    android:inputType="phone"
+                                    android:maxLines="1" />
+                            </com.google.android.material.textfield.TextInputLayout>
 
-                            <EditText
-                                android:id="@+id/dobET"
-                                style="@style/modifiedEditText"
-                                android:hint="@string/dob"
-                                android:padding="12dp"
-                                android:background="@drawable/rectangle_borderbg"
-                                android:inputType="textPassword"
-                                android:maxLines="1" />
-                        </com.google.android.material.textfield.TextInputLayout>
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/textInputPassword"
-                            style="@style/parent"
-                            app:passwordToggleEnabled="true"
-                            android:layout_marginTop="10dp">
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/textInputdob"
+                                style="@style/parent"
+                                android:layout_marginTop="10dp">
 
-                            <EditText
-                                android:id="@+id/passwordET"
-                                style="@style/modifiedEditText"
-                                android:hint="@string/login_password_hint"
-                                android:padding="12dp"
-                                android:background="@drawable/rectangle_borderbg"
-                                android:inputType="textPassword"
-                                android:maxLines="1" />
-                        </com.google.android.material.textfield.TextInputLayout>
+                                <EditText
+                                    android:id="@+id/dobET"
+                                    style="@style/modifiedEditText"
+                                    android:hint="@string/dob"
+                                    android:padding="12dp"
+                                    android:background="@drawable/rectangle_borderbg"
+                                    android:inputType="textPassword"
+                                    android:maxLines="1" />
+                            </com.google.android.material.textfield.TextInputLayout>
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/textInputPassword"
+                                style="@style/parent"
+                                app:passwordToggleEnabled="true"
+                                android:layout_marginTop="10dp">
 
-                        <TextView
-                            android:id="@+id/cirRegisterButton"
-                            style="@style/loginButton"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="10dp"
-                            android:gravity="center"
-                            android:text="Register" />
+                                <EditText
+                                    android:id="@+id/passwordET"
+                                    style="@style/modifiedEditText"
+                                    android:hint="@string/login_password_hint"
+                                    android:padding="12dp"
+                                    android:background="@drawable/rectangle_borderbg"
+                                    android:inputType="textPassword"
+                                    android:maxLines="1" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <TextView
+                                android:id="@+id/cirRegisterButton"
+                                style="@style/loginButton"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="10dp"
+                                android:gravity="center"
+                                android:text="Register" />
+
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/medicalform"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="visible">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/mName"
+                                style="@style/parent"
+                                android:layout_marginTop="@dimen/loginViewsMargin">
+
+                                <EditText
+                                    android:id="@+id/et_Oname"
+                                    style="@style/modifiedEditText"
+                                    android:hint="Owner's Name"
+                                    android:padding="12dp"
+                                    android:background="@drawable/rectangle_borderbg"
+                                    android:inputType="textPersonName"
+                                    android:maxLines="1" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/ownerEmail"
+                                style="@style/parent"
+                                android:layout_marginTop="10dp">
+
+                                <EditText
+                                    android:id="@+id/et_ownerEmail"
+                                    style="@style/modifiedEditText"
+                                    android:hint="Owner's Email"
+                                    android:padding="12dp"
+                                    android:background="@drawable/rectangle_borderbg"
+                                    android:inputType="textEmailAddress"
+                                    android:maxLines="1" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/ownerMobile"
+                                style="@style/parent"
+                                android:layout_marginTop="10dp">
+
+                                <EditText
+                                    android:id="@+id/et_ownersNumber"
+                                    style="@style/modifiedEditText"
+                                    android:hint="Mobile Number"
+                                    android:padding="12dp"
+                                    android:background="@drawable/rectangle_borderbg"
+                                    android:inputType="phone"
+                                    android:maxLines="1" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/textInputmanme"
+                                style="@style/parent"
+                                android:layout_marginTop="10dp">
+
+                                <EditText
+                                    android:id="@+id/et_Mname"
+                                    style="@style/modifiedEditText"
+                                    android:hint="Pharmacy Name"
+                                    android:padding="12dp"
+                                    android:background="@drawable/rectangle_borderbg"
+                                    android:inputType="textPassword"
+                                    android:maxLines="1" />
+                            </com.google.android.material.textfield.TextInputLayout>
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/textInputgstin"
+                                style="@style/parent"
+                                app:passwordToggleEnabled="true"
+                                android:layout_marginTop="10dp">
+
+                                <EditText
+                                    android:id="@+id/et_gstin"
+                                    style="@style/modifiedEditText"
+                                    android:hint="GSTIN Number"
+                                    android:padding="12dp"
+                                    android:background="@drawable/rectangle_borderbg"
+                                    android:inputType="textPassword"
+                                    android:maxLines="1" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
+                            <TextView
+                                android:id="@+id/tvgetloc"
+                                style="@style/loginButton"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="10dp"
+                                android:gravity="center"
+                                android:text="Location" />
+
+
+                            <TextView
+                                android:id="@+id/tvmedicalButton"
+                                style="@style/loginButton"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="10dp"
+                                android:gravity="center"
+                                android:text="Register" />
+
+
+
+                        </LinearLayout>
+
 
                         <TextView
                             style="@style/parent"

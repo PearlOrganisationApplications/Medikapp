@@ -41,7 +41,10 @@
     <dimen name="sp_18">18sp</dimen>
     <dimen name="sp_20">20sp</dimen>
     <dimen name="sp_22">22sp</dimen>
-
+    <dimen name="_10sdp">10dp</dimen>
+    <dimen name="_5sdp">5dp</dimen>
+    <dimen name="_24sdp">24dp</dimen>
+    <dimen name="_30sdp">30dp</dimen>
 
 
 </resources>
