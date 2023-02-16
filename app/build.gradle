@@ -43,14 +43,11 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.0'
     implementation 'com.google.android.material:material:1.7.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-<<<<<<< HEAD
     implementation 'com.google.android.gms:play-services-maps:18.1.0'
     implementation 'com.google.android.gms:play-services-location:21.0.1'
     implementation 'com.google.android.libraries.places:places:3.0.0'
     implementation 'com.google.android.gms:play-services-identity:18.0.1'
-=======
     implementation 'com.google.android.gms:play-services-location:21.0.1'
->>>>>>> 7c0563f8a09b49851022142e3f74e6d9f131434a
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'

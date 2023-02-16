@@ -21,13 +21,15 @@ class RegisterActivity : BaseClass() {
     lateinit var choose_user_spinner:Spinner
     lateinit var medicalform:LinearLayout
     lateinit var ll_userform:LinearLayout
-    lateinit var tvgetloc:TextView
+    lateinit var tvgetloc:LinearLayout
     lateinit var prefManager: PrefManager
+    lateinit var et_location: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         prefManager = PrefManager(this)
         setLayoutXml()
+        prefManager.setToLatL("")
         val isConnected = isNetworkConnected(this.applicationContext)
         if (isConnected) {
             //verifyVersion();
@@ -51,6 +53,7 @@ class RegisterActivity : BaseClass() {
         ll_userform=findViewById(R.id.ll_userform)
         medicalform=findViewById(R.id.medicalform)
         tvgetloc=findViewById(R.id.tvgetloc)
+        et_location=findViewById(R.id.et_location)
     }
     override fun initializeClickListners() {
 
@@ -80,9 +83,6 @@ class RegisterActivity : BaseClass() {
             startActivity(Intent(this, LocationPickerActivity::class.java))
 
         }
-        //tvgetloc.text = prefManager.getToLatL()+prefManager.getToLngL()
-
-        getCurrentLoc()
 
     }
 
@@ -114,7 +114,7 @@ class RegisterActivity : BaseClass() {
             e.printStackTrace()
             Log.w(" Current loction address",  e.printStackTrace().toString())
         }
-        tvgetloc?.setText(strAdd)
+        et_location?.setText(strAdd)
     }
 
 
@@ -127,11 +127,8 @@ class RegisterActivity : BaseClass() {
         var adapter=ArrayAdapter.createFromResource(this,R.array.user_type,android.R.layout.simple_spinner_item)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item)
         choose_user_spinner.adapter=adapter
-
-
-
-
     }
+
     override fun initializeLabels() {}
     @SuppressLint("ObsoleteSdkInt")
     override fun changeStatusBarColor() {
@@ -145,4 +142,16 @@ class RegisterActivity : BaseClass() {
             window.statusBarColor = resources.getColor(R.color.App_color)
         }
     }
+
+
+    override fun onResume() {
+        super.onResume()
+        if (prefManager.getToLatL().equals("")){
+
+        }else{
+            getCurrentLoc()
+        }
+    }
+
+
 }

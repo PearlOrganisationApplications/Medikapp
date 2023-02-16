@@ -303,19 +303,10 @@ class LocationPickerActivity :AppCompatActivity(), OnMapReadyCallback {
                 Toast.makeText(this,"Select Location First",Toast.LENGTH_SHORT).show()
             }else{
                 val db = DBHelper(this@LocationPickerActivity, null)
-
-                if (pref.getType().equals("1")) {
                     pref.setToLatL(mLatitude.toString())
                     pref.setToLngL(mLongitude.toString())
                     db.addAddress(addressline2?.text.toString(),mLatitude.toString(),mLongitude.toString())
                     // historyAddList.add(HistoryAdd(addressline2?.text.toString(),mLatitude.toString(),mLongitude.toString()))
-                }else{
-                    pref.setToLatM(mLatitude.toString())
-                    pref.setToLngM(mLongitude.toString())
-                    db.addAddress(addressline2?.text.toString(),mLatitude.toString(),mLongitude.toString())
-                    //  historyAddList.add(HistoryAdd(addressline2?.text.toString(),mLatitude.toString(),mLongitude.toString()))
-
-                }
                 finish()
             }
 
@@ -551,7 +542,8 @@ class LocationPickerActivity :AppCompatActivity(), OnMapReadyCallback {
             String state = addresses.get(0).getAdminArea();
             String country = addresses.get(0).getCountryName();
             String postalCode = addresses.get(0).getPostalCode();
-            String knownName = addresses.get(0).getFeatureName();*/return address
+            String knownName = addresses.get(0).getFeatureName();*/
+            return address
         } catch (e: IOException) {
             e.printStackTrace()
         }
