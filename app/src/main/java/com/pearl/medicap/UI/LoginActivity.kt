@@ -117,6 +117,8 @@ class LoginActivity : BasePublic(),GoogleApiClient.OnConnectionFailedListener,
         }
     }
 
+
+
     override fun initializeInputs() {
         fusedLocationProviderClient= LocationServices.getFusedLocationProviderClient(this)
         ActivityCompat.requestPermissions(
