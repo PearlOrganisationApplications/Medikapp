@@ -20,14 +20,14 @@
         android:theme="@style/Theme.Medicap"
         tools:targetApi="31">
         <activity
-            android:name=".MedicalProfileActivity"
+            android:name=".UI.MedicalProfileActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".TestLabActivity"
+            android:name=".UI.TestLabActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

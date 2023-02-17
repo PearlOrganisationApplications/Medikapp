@@ -155,11 +155,6 @@ class Customer_Dashboard :  BaseClass() {
             true
 
         }
-        binding.drawLayout.menu.findItem(R.id.lab_test).setOnMenuItemClickListener {
-            Toast.makeText(this,"lab test",Toast.LENGTH_SHORT).show()
-            startActivity(Intent(this,TestLabActivity::class.java))
-            true
-        }
 
     }
     fun hideSoftKeyboard(activity: Activity, view: View) {
