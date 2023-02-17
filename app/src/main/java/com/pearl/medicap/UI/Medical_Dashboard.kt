@@ -87,6 +87,15 @@ class Medical_Dashboard : BaseClass() {
             true
 
         }
+        draw_layout.menu.findItem(R.id.lab_test).setOnMenuItemClickListener {
+            Toast.makeText(this,"lab test",Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this,TestLabActivity::class.java))
+            true
+        }
+        draw_layout.menu.findItem(R.id.profile).setOnMenuItemClickListener {
+            startActivity(Intent(this,MedicalProfileActivity::class.java))
+            true
+        }
     }
 
     override fun initializeInputs() {
