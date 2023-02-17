@@ -8,5 +8,6 @@ class MedicalProfileActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_medical_profile)
+        window.statusBarColor=resources.getColor(R.color.App_color)
     }
 }

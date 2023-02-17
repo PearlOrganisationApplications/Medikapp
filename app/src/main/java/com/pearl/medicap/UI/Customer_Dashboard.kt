@@ -59,7 +59,7 @@ class Customer_Dashboard :  BaseClass() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         prefManager= PrefManager(this)
-        //prefManager.setCustomerlogin(false)
+      // prefManager.isCustomerlogin=false
         //prefManager.setCustomerlogin(false)
 
         setLayoutXml()
@@ -136,7 +136,7 @@ class Customer_Dashboard :  BaseClass() {
         drawer_button.setOnClickListener {
             drawer.openDrawer(GravityCompat.START)
         }
-        binding.drawLayout.menu.findItem(R.id.logout).setOnMenuItemClickListener {
+        binding.navigationView.menu.findItem(R.id.customer_logout).setOnMenuItemClickListener {
 
             //drawer.closeDrawer(GravityCompat.END)
             val alertDialog2 = AlertDialog.Builder(this)
@@ -144,7 +144,6 @@ class Customer_Dashboard :  BaseClass() {
             alertDialog2.setMessage("Are you sure you want to exit ?")
             alertDialog2.setPositiveButton("Yes") { dialog: DialogInterface?, which: Int ->
                 Toast.makeText(this,"Logout Successfully",Toast.LENGTH_SHORT).show()
-                //prefManager.setCustomerlogin(false)
                 startActivity(Intent(this, LoginActivity::class.java))
             }
             alertDialog2.setNegativeButton(
@@ -154,6 +153,11 @@ class Customer_Dashboard :  BaseClass() {
                //  finish();
             true
 
+        }
+        binding.navigationView.menu.findItem(R.id.lab_test).setOnMenuItemClickListener {
+            Toast.makeText(this,"lab test",Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this,TestLabActivity::class.java))
+            true
         }
 
     }
@@ -165,25 +169,15 @@ class Customer_Dashboard :  BaseClass() {
 
     override fun initializeInputs() {
         prefManager=PrefManager(this)
-
-
-
-        timer = object: CountDownTimer(10000, 3000) {
-            override fun onTick(millisUntilFinished: Long) {
-                binding.bannerList.layoutManager=LinearLayoutManager(this@Customer_Dashboard,LinearLayoutManager.HORIZONTAL,false)
+        binding.bannerList.layoutManager=LinearLayoutManager(this@Customer_Dashboard,LinearLayoutManager.HORIZONTAL,false)
                 banner_lisst.add(R.drawable.banner1)
                 banner_lisst.add(R.drawable.banner2)
                 banner_lisst.add(R.drawable.banner1)
                 banner_lisst.add(R.drawable.banner1)
                 banner_lisst.add(R.drawable.banner1)
-                var bannerAdapter=BannerAdapter(this@Customer_Dashboard,banner_lisst)
-                binding.bannerList.adapter=bannerAdapter
-            }
 
-            override fun onFinish() {
-            }
-        }
-        (timer as CountDownTimer).start()
+        var bannerAdapter=BannerAdapter(this@Customer_Dashboard,banner_lisst)
+        binding.bannerList.adapter=bannerAdapter
 
     }
 

@@ -26,7 +26,7 @@
                 android:id="@+id/Support"
                 android:title="Support"/>
             <item
-                android:id="@+id/logout"
+                android:id="@+id/customer_logout"
                 android:title="Logout"/>
 
 

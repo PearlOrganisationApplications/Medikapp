@@ -30,8 +30,7 @@ class Medical_Dashboard : BaseClass() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         prefManager= PrefManager(this)
-        prefManager.isMedicallogin = false
-
+        prefManager.isMedicallogin=false
         setLayoutXml()
         changeStatusBarColor()
         val isConnected = isNetworkConnected(this.applicationContext)
@@ -75,8 +74,6 @@ class Medical_Dashboard : BaseClass() {
             alertDialog2.setMessage("Are you sure you want to exit ?")
             alertDialog2.setPositiveButton("Yes") { dialog: DialogInterface?, which: Int ->
                 Toast.makeText(this,"Logout Successfully",Toast.LENGTH_SHORT).show()
-                //prefManager.setCustomerlogin(true)
-
                 startActivity(Intent(this, LoginActivity::class.java))
             }
             alertDialog2.setNegativeButton(
@@ -87,11 +84,7 @@ class Medical_Dashboard : BaseClass() {
             true
 
         }
-        draw_layout.menu.findItem(R.id.lab_test).setOnMenuItemClickListener {
-            Toast.makeText(this,"lab test",Toast.LENGTH_SHORT).show()
-            startActivity(Intent(this,TestLabActivity::class.java))
-            true
-        }
+
         draw_layout.menu.findItem(R.id.profile).setOnMenuItemClickListener {
             startActivity(Intent(this,MedicalProfileActivity::class.java))
             true

@@ -33,11 +33,10 @@ class LoginActivity : BasePublic(),GoogleApiClient.OnConnectionFailedListener,
         super.onCreate(savedInstanceState)
         session = Session(this@LoginActivity)
         prefManager=PrefManager(this)
-        if (session!!.hasSession!!) {
+      /*  if (session!!.hasSession!!) {
             //startActivity(Intent(applicationContext, MainActivity::class.java))
 
             if (prefManager.isCustomerlogin){
-
                 startActivity(Intent(this, Customer_Dashboard::class.java))
             }
            else
@@ -45,7 +44,7 @@ class LoginActivity : BasePublic(),GoogleApiClient.OnConnectionFailedListener,
                 startActivity(Intent(this, Medical_Dashboard::class.java))
             }
             finish()
-        }
+        }*/
 
         setLayoutXml()
         changeStatusBarColor()
@@ -98,12 +97,14 @@ class LoginActivity : BasePublic(),GoogleApiClient.OnConnectionFailedListener,
             val pass = editTextPassword!!.text.toString()
             // validatedata(email,pass);
             if (email == "customer@gmail.com" && pass == "1234") {
-                session!!.hasSession = true
+                //session!!.hasSession = true
                // startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                prefManager.isCustomerlogin=false
                 startActivity(Intent(this, Customer_Dashboard::class.java))
                 finish()
             }
             else if (email=="medical@gmail.com"&& pass=="1234"){
+                prefManager.isMedicallogin=false
                 startActivity(Intent(this, Medical_Dashboard::class.java))
                 finish()
             }
@@ -116,9 +117,6 @@ class LoginActivity : BasePublic(),GoogleApiClient.OnConnectionFailedListener,
             }
         }
     }
-
-
-
     override fun initializeInputs() {
         fusedLocationProviderClient= LocationServices.getFusedLocationProviderClient(this)
         ActivityCompat.requestPermissions(
@@ -132,13 +130,10 @@ class LoginActivity : BasePublic(),GoogleApiClient.OnConnectionFailedListener,
     override fun onConnectionFailed(p0: ConnectionResult) {
 
     }
-
     override fun onConnected(p0: Bundle?) {
 
     }
-
     override fun onConnectionSuspended(p0: Int) {
 
     }
-
 }

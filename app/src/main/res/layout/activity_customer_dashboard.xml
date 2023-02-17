@@ -31,6 +31,7 @@
         android:visibility="visible"
         android:layout_height="wrap_content"
         android:id="@+id/banner_list"/>
+
     <RelativeLayout
         android:background="#C5E1A5"
         android:padding="7dp"
@@ -141,10 +142,10 @@
         <com.google.android.material.navigation.NavigationView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/draw_layout"
+            android:id="@+id/navigation_view"
             android:layout_gravity="start"
             app:headerLayout="@layout/nav_header_customer_menu_drawer"
-            app:menu="@menu/activity_driver_menu__drawer" />
+            app:menu="@menu/customer_dashboard_menu" />
 
     </androidx.drawerlayout.widget.DrawerLayout>
 </layout>
