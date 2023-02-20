@@ -99,12 +99,13 @@ class LoginActivity : BasePublic(),GoogleApiClient.OnConnectionFailedListener,
             if (email == "customer@gmail.com" && pass == "1234") {
                 //session!!.hasSession = true
                // startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-                prefManager.isCustomerlogin=false
+               //+-
+                // prefManager.isCustomerlogin=false
                 startActivity(Intent(this, Customer_Dashboard::class.java))
                 finish()
             }
             else if (email=="medical@gmail.com"&& pass=="1234"){
-                prefManager.isMedicallogin=false
+               // prefManager.isMedicallogin=false
                 startActivity(Intent(this, Medical_Dashboard::class.java))
                 finish()
             }
