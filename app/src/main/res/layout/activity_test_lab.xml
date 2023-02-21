@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".UI.TestLabActivity">
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -26,78 +27,65 @@
              android:textStyle="bold"
              android:textSize="20sp"/>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputName"
-                style="@style/parent"
-                android:layout_marginTop="@dimen/loginViewsMargin">
+         <LinearLayout
+             android:layout_marginTop="10dp"
+             android:orientation="vertical"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content">
+             <EditText
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:padding="12dp"
+                 android:hint="name"
+                 android:id="@+id/customernameET"
+                 android:textSize="15sp"
+                 android:background="@drawable/rectangle_borderbg"/>
+         </LinearLayout>
 
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
                 <EditText
-                    android:id="@+id/NameET"
-                    style="@style/modifiedEditText"
-                    android:hint="Name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:padding="12dp"
-                    android:background="@drawable/rectangle_borderbg"
-                    android:inputType="textPersonName"
-                    android:maxLines="1" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:textSize="15sp"
+                    android:id="@+id/customer_numberET"
+                    android:hint="Contact number"
+                    android:background="@drawable/rectangle_borderbg"/>
+            </LinearLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputEmail"
-                style="@style/parent"
-                android:layout_marginTop="10dp">
-
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
                 <EditText
-                    android:id="@+id/emailET"
-                    style="@style/modifiedEditText"
-                    android:hint="@string/login_email_hint"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:padding="12dp"
-                    android:background="@drawable/rectangle_borderbg"
-                    android:inputType="textEmailAddress"
-                    android:maxLines="1" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputMobile"
-                style="@style/parent"
-                android:layout_marginTop="10dp">
-
-                <EditText
-                    android:id="@+id/MobileET"
-                    style="@style/modifiedEditText"
-                    android:hint="Mobile Number"
-                    android:padding="12dp"
-                    android:background="@drawable/rectangle_borderbg"
-                    android:inputType="phone"
-                    android:maxLines="1" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputdob"
-                style="@style/parent"
-                android:layout_marginTop="10dp">
-
-                <EditText
+                    android:textSize="15sp"
                     android:id="@+id/dobET"
-                    style="@style/modifiedEditText"
-                    android:hint="@string/dob"
-                    android:padding="12dp"
-                    android:background="@drawable/rectangle_borderbg"
-                    android:inputType="textPassword"
-                    android:maxLines="1" />
-            </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/parent"
-                android:layout_marginTop="10dp">
+                    android:hint="Date of birth"
+                    android:background="@drawable/rectangle_borderbg"/>
+            </LinearLayout>
 
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
                 <EditText
-                    android:id="@+id/appointmntET"
-                    style="@style/modifiedEditText"
-                    android:hint="Appointment for..."
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:padding="12dp"
-                    android:background="@drawable/rectangle_borderbg"
-                    android:inputType="textPassword"
-                    android:maxLines="1" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:id="@+id/appointmentforET"
+                    android:textSize="15sp"
+                    android:hint="Appointment for "
+                    android:background="@drawable/rectangle_borderbg"/>
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/submitButton"
@@ -110,4 +98,4 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

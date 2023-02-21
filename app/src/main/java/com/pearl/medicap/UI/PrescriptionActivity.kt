@@ -23,10 +23,10 @@ import java.util.*
 class PrescriptionActivity : AppCompatActivity() {
     private val REQUEST_CODE_SPEECH_INPUT = 1
     var list=ArrayList<MedicineListDAta>()
-    var value=0
-    var amount=0
-    var discount=0
-    var sum=0
+    var value=""
+    var amount=""
+    var discount=""
+    var sum=""
     lateinit var medicineListAdapter: MedicineListAdapter
 
     lateinit var binding:ActivityPrescriptionBinding
@@ -55,10 +55,10 @@ class PrescriptionActivity : AppCompatActivity() {
             override fun afterTextChanged(s: Editable?) {
                 var num=0
              if (!s?.toString().equals("null")) {
-                 var sum=value+amount
-                 binding.medicineSubtotalET.setText(value.toString())
+
+                 binding.medicineSubtotalET.setText(value)
+                 binding.medicineQuantityET.setHint("Quality")
              }
-                binding.medicineQuantityET.setHint("Quality")
 
             }
 
@@ -69,9 +69,8 @@ class PrescriptionActivity : AppCompatActivity() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
 
            if (s!=null){
-               value=s.toString().toInt()
+               value=s.toString()
            }
-
 
             }
         })
@@ -84,7 +83,7 @@ class PrescriptionActivity : AppCompatActivity() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 if (s!=null){
 
-                    discount=s.toString().toInt()
+                    discount=s.toString()
 
                 }
 
@@ -102,19 +101,21 @@ class PrescriptionActivity : AppCompatActivity() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                 amount=s.toString().toInt()
+                 amount=s.toString()
             }
 
             override fun afterTextChanged(s: Editable?) {
-                 sum=value+discount+amount
-                binding.medicineSubtotalET.setText(sum.toString())
+
+                binding.medicineSubtotalET.setText(sum)
             }
-
         })
-
 
         binding.addBtn.setOnClickListener {
 
+            Log.d("Medicine total","quantity:::Discount"+value+","+discount)
+            value=(binding.medicinePerPriceET.text.toString().toInt()*value.toInt()).toString()
+            discount=((binding.medicineDiscountET.text.toString().toInt()*value.toInt()/100)).toString()
+            sum=(value.toInt()-discount.toInt()).toString()
 
            /* val result = buildString{
               //  append(medicine_name,",",dosage,",",frequency,",",",",duration,notes)
@@ -132,7 +133,7 @@ class PrescriptionActivity : AppCompatActivity() {
             binding.medicineQuantityET.setHint("Quality")
 
             var subtotal=0
-            subtotal=subtotal+sum
+            subtotal=subtotal+sum.toInt()
             Log.d("total","subtotal==="+subtotal)
             binding.subtotalET.setText(subtotal.toString())
 
@@ -165,7 +166,6 @@ class PrescriptionActivity : AppCompatActivity() {
                 // to our output text view.
                 binding.notes.setText(
                     Objects.requireNonNull(res)[0]
-                )
-            }
+                ) }
     }
 }}

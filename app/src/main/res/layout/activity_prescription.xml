@@ -75,6 +75,16 @@
                     android:hint="discount"/>
 
                 <EditText
+                    android:id="@+id/medicine_per_priceET"
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:layout_weight="4.0"
+                    android:background="@drawable/rectangle_borderbg"
+                    android:hint="Price per medicine"
+                    android:padding="10dp"
+                    android:textSize="13sp" />
+
+                <EditText
                     android:id="@+id/medicine_priceET"
                     android:layout_width="0dp"
                     android:layout_height="80dp"

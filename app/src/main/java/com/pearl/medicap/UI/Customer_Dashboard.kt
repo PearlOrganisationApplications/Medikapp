@@ -11,6 +11,7 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.os.Handler
 import android.view.View
 import android.view.Window
 import android.view.inputmethod.InputMethodManager
@@ -25,15 +26,16 @@ import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.pearl.medicap.Adapter.BannerAdapter
-import com.pearl.medicap.Adapter.MedicineAdapter
-import com.pearl.medicap.Adapter.MultipleImageAdapter
+import com.pearl.medicap.Adapter.*
 import com.pearl.medicap.R
 import com.pearl.medicap.databinding.ActivityCustomerDashboardBinding
+import com.pearl.medicap.model.ComingSoon
 import com.pearl.medicap.model.MultipleImage
 import com.pearl.medicap.pearlLib.BaseClass
 import com.pearl.medicap.pearlLib.PrefManager
+import me.relex.circleindicator.CircleIndicator
 import java.io.File
+import java.util.*
 
 
 class Customer_Dashboard :  BaseClass() {
@@ -55,12 +57,25 @@ class Customer_Dashboard :  BaseClass() {
     lateinit var prefManager: PrefManager
     lateinit var bannerAdapter: BannerAdapter
     private var timer: CountDownTimer?=null
+    lateinit var viewPagerAdapter: ImageSlideAdapter
+    lateinit var indicator: CircleIndicator
+    lateinit var comingSoonAdapter: ComingSoonAdapter
+    var comingsoonList=ArrayList<ComingSoon>()
+
+    var currentPage = 0
+    lateinit var timerr:Timer
+    val DELAY_MS: Long = 500
+
+    val PERIOD_MS: Long = 3000
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         prefManager= PrefManager(this)
       // prefManager.isCustomerlogin=false
         //prefManager.setCustomerlogin(false)
+
+
 
         setLayoutXml()
         changeStatusBarColor()
@@ -172,12 +187,46 @@ class Customer_Dashboard :  BaseClass() {
         binding.bannerList.layoutManager=LinearLayoutManager(this@Customer_Dashboard,LinearLayoutManager.HORIZONTAL,false)
                 banner_lisst.add(R.drawable.banner1)
                 banner_lisst.add(R.drawable.banner2)
-                banner_lisst.add(R.drawable.banner1)
-                banner_lisst.add(R.drawable.banner1)
+                banner_lisst.add(R.drawable.banner3)
+                banner_lisst.add(R.drawable.banner4)
                 banner_lisst.add(R.drawable.banner1)
 
         var bannerAdapter=BannerAdapter(this@Customer_Dashboard,banner_lisst)
         binding.bannerList.adapter=bannerAdapter
+
+        viewPagerAdapter = ImageSlideAdapter(this, banner_lisst)
+        binding.viewpager.adapter = viewPagerAdapter
+        indicator = findViewById(R.id.indicator) as CircleIndicator
+        indicator.setViewPager(binding.viewpager)
+
+
+        val handler = Handler()
+        val Update = Runnable {
+            if (currentPage === banner_lisst.size - 1) {
+                currentPage = 0
+            }
+
+            binding.viewpager.setCurrentItem(currentPage++, true)
+        }
+
+      // This will create a new Thread
+
+        timerr=Timer()
+        timerr.schedule(object : TimerTask() {
+            // task to be scheduled
+            override fun run() {
+                handler.post(Update)
+            }
+        }, DELAY_MS, PERIOD_MS)
+
+
+        binding.commingSoonList.layoutManager=GridLayoutManager(this,2)
+        comingsoonList.add(ComingSoon(R.drawable.ultrasound,"Coming Soon"))
+        comingsoonList.add(ComingSoon(R.drawable.xray,"Coming Soon"))
+        comingsoonList.add(ComingSoon(R.drawable.ctscan,"Coming Soon"))
+        comingsoonList.add(ComingSoon(R.drawable.ultrasound,"Coming Soon"))
+        comingSoonAdapter=ComingSoonAdapter(this,comingsoonList)
+        binding.commingSoonList.adapter=comingSoonAdapter
 
     }
 
