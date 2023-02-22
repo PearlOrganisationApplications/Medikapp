@@ -20,7 +20,7 @@
         android:theme="@style/Theme.Medicap"
         tools:targetApi="31">
         <activity
-            android:name=".CustomerProfileActivity"
+            android:name=".UI.CustomerProfileActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

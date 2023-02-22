@@ -33,7 +33,8 @@ class LoginActivity : BasePublic(),GoogleApiClient.OnConnectionFailedListener,
         super.onCreate(savedInstanceState)
         session = Session(this@LoginActivity)
         prefManager=PrefManager(this)
-      /*  if (session!!.hasSession!!) {
+
+     /*   if (session!!.hasSession!!) {
             //startActivity(Intent(applicationContext, MainActivity::class.java))
 
             if (prefManager.isCustomerlogin){

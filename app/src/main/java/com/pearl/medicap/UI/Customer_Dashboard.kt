@@ -68,14 +68,11 @@ class Customer_Dashboard :  BaseClass() {
 
     val PERIOD_MS: Long = 3000
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         prefManager= PrefManager(this)
-      // prefManager.isCustomerlogin=false
+       prefManager.isCustomerlogin=false
         //prefManager.setCustomerlogin(false)
-
-
 
         setLayoutXml()
         changeStatusBarColor()
@@ -174,6 +171,10 @@ class Customer_Dashboard :  BaseClass() {
             startActivity(Intent(this,TestLabActivity::class.java))
             true
         }
+        binding.navigationView.menu.findItem(R.id.customer_profile).setOnMenuItemClickListener {
+            startActivity(Intent(this,CustomerProfileActivity::class.java))
+            true
+        }
 
     }
     fun hideSoftKeyboard(activity: Activity, view: View) {
@@ -220,11 +221,10 @@ class Customer_Dashboard :  BaseClass() {
         }, DELAY_MS, PERIOD_MS)
 
 
-        binding.commingSoonList.layoutManager=GridLayoutManager(this,2)
-        comingsoonList.add(ComingSoon(R.drawable.ultrasound,"Coming Soon"))
-        comingsoonList.add(ComingSoon(R.drawable.xray,"Coming Soon"))
-        comingsoonList.add(ComingSoon(R.drawable.ctscan,"Coming Soon"))
-        comingsoonList.add(ComingSoon(R.drawable.ultrasound,"Coming Soon"))
+        binding.commingSoonList.layoutManager=LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
+        comingsoonList.add(ComingSoon(R.drawable.ultrasound,"Ultrasound-Test"))
+        comingsoonList.add(ComingSoon(R.drawable.xray,"X-ray Test"))
+        comingsoonList.add(ComingSoon(R.drawable.ctscan,"Doctor Appointment"))
         comingSoonAdapter=ComingSoonAdapter(this,comingsoonList)
         binding.commingSoonList.adapter=comingSoonAdapter
 
