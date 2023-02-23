@@ -1,168 +1,186 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawerr"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".UI.Customer_Dashboard"
-        android:id="@+id/drawerr"
-        >
-        <ScrollView
+        tools:context=".UI.Customer_Dashboard">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:ignore="MissingClass">
-    <include layout="@layout/top_drawer_layout"/>
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center"
-        android:visibility="gone"
-        android:layout_marginTop="5dp"
-        android:src="@mipmap/appicon"/>
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:ignore="MissingClass">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:visibility="gone"
-        android:layout_height="wrap_content"
-        android:id="@+id/banner_list"/>
+            <include layout="@layout/top_drawer_layout" />
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewpager"
-        android:layout_margin="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        />
-    <me.relex.circleindicator.CircleIndicator
-        android:id="@+id/indicator"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        app:ci_drawable="@color/App_color"
-        android:elevation="4dp"/>
-
-    <RelativeLayout
-        android:background="#C5E1A5"
-        android:padding="7dp"
-        android:layout_margin="7dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="7dp"
-        android:gravity="center"
-        android:padding="5dp"
-        android:background="#C5E1A5"
-        android:layout_marginTop="10dp"
-        android:id="@+id/imageUploadLL"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="9.0"
-            android:layout_margin="4dp"
-            android:layout_height="wrap_content"
-            android:text="Upload medicine images"
-            android:textSize="18sp"
-            android:layout_gravity="center"
-            />
-        <ImageView
-        android:layout_width="0dp"
-        android:layout_weight="1"
-            android:padding="4dp"
-        android:layout_height="40dp"
-        android:layout_gravity="center"
-        android:src="@drawable/add"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_margin="4dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/imagelist"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:orientation="horizontal">
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="2dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="0.6"
-            android:background="@color/App_color"
-            android:padding="8dp"
-            android:textAlignment="center" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="  or  " />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="2dp"
-            android:layout_gravity="center"
-            android:layout_marginRight="5dp"
-            android:layout_weight="0.6"
-            android:background="@color/App_color"
-            android:padding="8dp"
-            android:textAlignment="center" />
-
-    </LinearLayout>
-
-    <include layout="@layout/input_medicine_layout"/>
-
- <LinearLayout
-     android:layout_marginTop="10dp"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:maxLength="4"
-            android:id="@+id/medicinelist"/>
-</LinearLayout>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="submit"
-        android:id="@+id/submit_bt"
-        android:layout_gravity="center"
-        android:backgroundTint="@color/App_color"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/commingSoonList"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
 
-</LinearLayout>
-        </ScrollView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    tools:ignore="MissingClass">
+
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:src="@mipmap/appicon"
+                        android:visibility="gone" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/banner_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone" />
+
+                    <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/viewpager"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_margin="10dp" />
+
+                    <me.relex.circleindicator.CircleIndicator
+                        android:id="@+id/indicator"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:elevation="4dp"
+                        app:ci_drawable="@color/App_color" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="7dp"
+                        android:background="#C5E1A5"
+                        android:padding="7dp">
+
+                        <Spinner
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:id="@+id/imageUploadLL"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="7dp"
+                        android:layout_marginTop="10dp"
+                        android:background="#C5E1A5"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="4dp"
+                            android:layout_weight="9.0"
+                            android:text="Upload medicine images"
+                            android:textSize="18sp" />
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:padding="4dp"
+                            android:src="@drawable/add" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/imagelist"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="4dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal">
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="2dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="5dp"
+                            android:layout_weight="0.6"
+                            android:background="@color/App_color"
+                            android:padding="8dp"
+                            android:textAlignment="center" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="  or  " />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="2dp"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="0.6"
+                            android:background="@color/App_color"
+                            android:padding="8dp"
+                            android:textAlignment="center" />
+
+                    </LinearLayout>
+
+                    <include layout="@layout/input_medicine_layout" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/medicinelist"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLength="4" />
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/submit_bt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:backgroundTint="@color/App_color"
+                        android:text="submit" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/commingSoonList"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+
+            </ScrollView>
+        </LinearLayout>
+
         <com.google.android.material.navigation.NavigationView
+            android:id="@+id/navigation_view"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/navigation_view"
             android:layout_gravity="start"
             app:headerLayout="@layout/nav_header_customer_menu_drawer"
             app:menu="@menu/customer_dashboard_menu" />
