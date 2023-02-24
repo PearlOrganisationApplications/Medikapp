@@ -44,8 +44,7 @@ class CustomerProfileActivity : BaseClass() {
     override fun initializeClickListners() {
      var backBtn=findViewById<ImageView>(R.id.iv_back)
         backBtn.setOnClickListener {
-            startActivity(Intent(this,Customer_Dashboard::class.java))
-            finish()
+            this.finish()
         }
     }
 

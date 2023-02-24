@@ -1,8 +1,10 @@
 package com.pearl.medicap.UI
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.pearl.medicap.R
@@ -58,6 +60,10 @@ class TestLabActivity : BaseClass(){
             customer_number.text.clear()
             dob.text.clear()
             appointment.text.clear()
+        }
+        var backBtn=findViewById<ImageView>(R.id.iv_back)
+        backBtn.setOnClickListener {
+            this.finish()
         }
     }
 

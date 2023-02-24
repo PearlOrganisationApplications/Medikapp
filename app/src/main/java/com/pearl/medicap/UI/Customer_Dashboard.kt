@@ -225,9 +225,30 @@ class Customer_Dashboard : BaseClass() {
 
         binding.commingSoonList.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        comingsoonList.add(ComingSoon(R.drawable.ultrasound, "Ultrasound-Test"))
-        comingsoonList.add(ComingSoon(R.drawable.xray, "X-ray Test"))
-        comingsoonList.add(ComingSoon(R.drawable.ctscan, "Doctor Appointment"))
+        comingsoonList.add(
+            ComingSoon(
+                R.drawable.ultrasound, "Ultrasound-Test \n " +
+                        "coming soon"
+            )
+        )
+        comingsoonList.add(
+            ComingSoon(
+                R.drawable.xray, "X-ray Test \n" +
+                        " coming soon"
+            )
+        )
+        comingsoonList.add(
+            ComingSoon(
+                R.drawable.ctscan, "CT Scan \n" +
+                        " coming soon"
+            )
+        )
+        comingsoonList.add(
+            ComingSoon(
+                R.drawable.doctor_appointment, "Doctor Appointment \n" +
+                        " coming soon"
+            )
+        )
         comingSoonAdapter = ComingSoonAdapter(this, comingsoonList)
         binding.commingSoonList.adapter = comingSoonAdapter
 
