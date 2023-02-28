@@ -29,6 +29,7 @@ class WelcomeActivity : AppCompatActivity() {
     lateinit var btnSkip: Button
     lateinit var btnNext: Button
     private var prefManager: PrefManager? = null
+
     @SuppressLint("ObsoleteSdkInt")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -96,15 +97,12 @@ class WelcomeActivity : AppCompatActivity() {
 
     private fun launchHomeScreen() {
         prefManager!!.isFirstTimeLaunch = false
-        Log.d("WelcomeActivity","WelcomeActivity")
-        if (prefManager!!.isCustomerlogin){
+        Log.d("WelcomeActivity", "WelcomeActivity")
+        if (prefManager!!.isCustomerlogin) {
             startActivity(Intent(this, Customer_Dashboard::class.java))
-        }
-
-        else   if (prefManager!!.isMedicallogin!!) {
+        } else if (prefManager!!.isMedicallogin!!) {
             startActivity(Intent(this, Medical_Dashboard::class.java))
-        }
-        else{
+        } else {
             startActivity(Intent(this@WelcomeActivity, LoginActivity::class.java))
         }
         finish()

@@ -28,9 +28,8 @@ class MedicalProfileActivity : BaseClass() {
             initializeLabels()
             initializeInputs()
             printLogs("LoginActivity", "onCreate", "exitConnected")
-        }
-        else{
-            Toast.makeText(this,"Please connnect with internet", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(this, "Please connnect with internet", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -43,11 +42,10 @@ class MedicalProfileActivity : BaseClass() {
     }
 
     override fun initializeClickListners() {
-       var backIV=findViewById<ImageView>(R.id.iv_back)
-    backIV.setOnClickListener {
-    startActivity(Intent(this,Medical_Dashboard::class.java))
-        finish()
-}
+        var backIV = findViewById<ImageView>(R.id.iv_back)
+        backIV.setOnClickListener {
+            this.finish()
+        }
     }
 
     override fun initializeInputs() {
@@ -59,6 +57,6 @@ class MedicalProfileActivity : BaseClass() {
     }
 
     override fun changeStatusBarColor() {
-        window.statusBarColor=resources.getColor(R.color.App_color)
+        window.statusBarColor = resources.getColor(R.color.App_color)
     }
 }

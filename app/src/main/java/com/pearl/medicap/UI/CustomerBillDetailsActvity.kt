@@ -75,11 +75,12 @@ class CustomerBillDetailsActvity : BaseClass() {
             }
         }
         payLater.setOnClickListener {
-            finish()
-            startActivity(Intent(this,Customer_Dashboard::class.java))
+            this.finish()
+
         }
         back_btn.setOnClickListener {
-            startActivity(Intent(this,Customer_Dashboard::class.java))
+            this.finish()
+//            startActivity(Intent(this,Customer_Dashboard::class.java))
         }
     }
 

@@ -8,9 +8,11 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.widget.ArrayAdapter
+import android.widget.ImageView
 import android.widget.ListView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.text.set
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,27 +20,58 @@ import com.pearl.medicap.Adapter.MedicineListAdapter
 import com.pearl.medicap.R
 import com.pearl.medicap.databinding.ActivityPrescriptionBinding
 import com.pearl.medicap.model.MedicineListDAta
+import com.pearl.medicap.pearlLib.BaseClass
 import java.util.*
 
-class PrescriptionActivity : AppCompatActivity() {
+class PrescriptionActivity : BaseClass() {
     private val REQUEST_CODE_SPEECH_INPUT = 1
-    var list=ArrayList<MedicineListDAta>()
-    var value=""
-    var amount=""
-    var discount=""
-    var sum=""
+    var list = ArrayList<MedicineListDAta>()
+    var quantity = 0
+    var cost = 0.0
+    var discount = 0.0
+    var amount = 0.0
+    var sum = 0.0
     lateinit var medicineListAdapter: MedicineListAdapter
 
-    lateinit var binding:ActivityPrescriptionBinding
+    lateinit var binding: ActivityPrescriptionBinding
+    override fun setLayoutXml() {
+        TODO("Not yet implemented")
+    }
+
+    override fun initializeViews() {
+        TODO("Not yet implemented")
+    }
+
+    override fun initializeClickListners() {
+        var backBtn=findViewById<ImageView>(R.id.iv_back)
+        backBtn.setOnClickListener {
+            this.finish()
+        }
+    }
+
+    override fun initializeInputs() {
+        TODO("Not yet implemented")
+    }
+
+    override fun initializeLabels() {
+        TODO("Not yet implemented")
+    }
+
+    override fun changeStatusBarColor() {
+        TODO("Not yet implemented")
+    }
+
     @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding=DataBindingUtil.setContentView(this,R.layout.activity_prescription)
-      window.statusBarColor=resources.getColor(R.color.App_color)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_prescription)
+        window.statusBarColor = resources.getColor(R.color.App_color)
 
         binding.mic.setOnClickListener {
             val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
-            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
+            intent.putExtra(
+                RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
+            )
             intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault())
             intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak to text")
             try {
@@ -51,102 +84,166 @@ class PrescriptionActivity : AppCompatActivity() {
 
 
 
-        binding.medicineQuantityET.addTextChangedListener(object: TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                var num=0
-             if (!s?.toString().equals("null")) {
+//        binding.medicineQuantityET.addTextChangedListener(object : TextWatcher {
+//            override fun afterTextChanged(s: Editable?) {
+////                var num = 0
+//                if (!s?.toString().equals("null")) {
+//
+////                    binding.medicineSubtotalET.setText(sum)
+//                    binding.medicineQuantityET.setHint("Quality")
+//                }
+//
+//            }
+//
+//            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+//
+//            }
+//
+//            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+//
+//                if (s != null && s != "") {
+//                    quantity = Integer.parseInt(s.toString())
+//                    if(s==""){
+//                        quantity = 0
+//                    }
+//                }
+//                else{
+//                    quantity = 0
+//                }
+//
+//            }
+//        })
 
-                 binding.medicineSubtotalET.setText(value)
-                 binding.medicineQuantityET.setHint("Quality")
-             }
+//        binding.medicineDiscountET.addTextChangedListener(object : TextWatcher {
+//            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+//
+//            }
+//
+//            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+//
+//                var d = s.toString()
+//
+//                if (d != null && d != "") {
+//                    discount = Integer.parseInt(d).toDouble()
+//                    if(d==""){
+//                        discount = 0.0
+//                    }
+//                }
+//                else{
+//                    discount = 0.0
+//                }
+//
+//            }
+//
+//            override fun afterTextChanged(s: Editable?) {
+////                binding.medicineSubtotalET.setText(sum)
+//
+//            }
+//
+//        })
 
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
-           if (s!=null){
-               value=s.toString()
-           }
-
-            }
-        })
-
-        binding.medicineDiscountET.addTextChangedListener(object :TextWatcher{
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (s!=null){
-
-                    discount=s.toString()
-
-                }
-
-            }
-
-            override fun afterTextChanged(s: Editable?) {
-                binding.medicineSubtotalET.setText(discount.toString())
-
-            }
-
-        })
-        binding.medicinePriceET.addTextChangedListener(object :TextWatcher{
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                 amount=s.toString()
-            }
-
-            override fun afterTextChanged(s: Editable?) {
-
-                binding.medicineSubtotalET.setText(sum)
-            }
-        })
+//        binding.medicinePerPriceET.addTextChangedListener(object : TextWatcher {
+//            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+//
+//            }
+//
+//            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+//                cost = s.toString().toDouble()
+//            }
+//
+//            override fun afterTextChanged(s: Editable?) {
+//
+////                binding.medicineSubtotalET.setText(sum)
+//            }
+//        })
 
         binding.addBtn.setOnClickListener {
 
-            Log.d("Medicine total","quantity:::Discount"+value+","+discount)
-            value=(binding.medicinePerPriceET.text.toString().toInt()*value.toInt()).toString()
-            discount=((binding.medicineDiscountET.text.toString().toInt()*value.toInt()/100)).toString()
-            sum=(value.toInt()-discount.toInt()).toString()
+            if(binding.medicineQuantityET.text.toString()!=null && binding.medicineDiscountET.text.toString()!=null && binding.medicinePerPriceET.text.toString()!=null){
+                quantity = Integer.parseInt(binding.medicineQuantityET.text.toString())
+                discount = Integer.parseInt(binding.medicineDiscountET.text.toString()).toDouble()
+                cost = Integer.parseInt(binding.medicinePerPriceET.text.toString()).toDouble()
 
-           /* val result = buildString{
-              //  append(medicine_name,",",dosage,",",frequency,",",",",duration,notes)
-                append(binding.medicineNameET.text.toString()+""+sum.toString()+",\n"+binding.notes.text.toString())
+                if(quantity != null || quantity != 0 && discount != null || discount != 0.0 && cost != null || cost != 0.0 ){
+                    Log.d("Medicine total", "quantity:::Discount:::cost" + quantity + "," + discount+","+cost)
+                    discount = (binding.medicineDiscountET.text.toString().toDouble() / 100)
+                    amount = (quantity * cost)
+                    sum = (amount - (amount * discount))
+                    binding.medicineSubtotalET.setText(sum.toString())
+
+                    var subtotal = binding.subtotalET.text.toString()
+
+                    if(subtotal!=null && subtotal!="")
+                        sum = subtotal.toDouble() + sum
+
+                    binding.subtotalET.setText( (sum).toString())
+
+
+                    var gst = 0.12
+                    binding.gstET.setText(gst.toString())
+
+                    var total = sum + (sum*gst)
+                    binding.totalET.setText(total.toString())
+
+//            Log.d("Medicine total", "quantity:::Discount:::cost:::amount:::sum" + quantity + "," + discount+","+cost+","+amount+","+sum)
+
+                    /* val result = buildString{
+                       //  append(medicine_name,",",dosage,",",frequency,",",",",duration,notes)
+                         append(binding.medicineNameET.text.toString()+""+sum.toString()+",\n"+binding.notes.text.toString())
+                     }
+         */
+                    var medicine_dataList = findViewById<RecyclerView>(R.id.medicinedatalist)
+                    medicine_dataList.layoutManager = LinearLayoutManager(this)
+
+                    list.addAll(
+                        listOf(
+                            MedicineListDAta(
+                                binding.medicineNameET.text.toString(),
+                                binding.medicineQuantityET.text.toString(),
+                                binding.medicineDiscountET.text.toString(),
+                                binding.medicinePerPriceET.text.toString(),
+                                binding.notes.text.toString(),
+                                sum.toString()
+                            )
+                        )
+                    )
+
+                    medicineListAdapter = MedicineListAdapter(this, list)
+                    // var adapter=ArrayAdapter(this,android.R.layout.simple_list_item_1,list)
+                    medicine_dataList.adapter = medicineListAdapter
+                    binding.medicineNameET.text.clear()
+                    binding.medicineQuantityET.setHint("Quantity")
+                    binding.medicineDiscountET.text.clear()
+                    binding.notes.text.clear()
+                    sum = 0.0
+
+
+//            var subtotal = 0
+//            subtotal = subtotal + sum.toInt()
+//            Log.d("total", "subtotal===" + subtotal)
+//            binding.subtotalET.setText(subtotal.toString())
+
+                    /*   val dialog = Dialog(this)
+                       dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+                       dialog.setCancelable(false)
+                       dialog.setContentView(R.layout.customer_bill_details_dialog)
+                       var listView=dialog.findViewById<ListView>(R.id.list)
+                       list.addAll(listOf(result))
+                       var adapter=ArrayAdapter(this,android.R.layout.simple_list_item_1,list)
+                       listView.adapter=adapter
+                       dialog.setCancelable(true)
+                       dialog.show()*/
+                }
+
+                else{
+                    Toast.makeText(this,"Please Fill all details",Toast.LENGTH_SHORT).show()
+                }
             }
-*/
-            var medicine_dataList=findViewById<RecyclerView>(R.id.medicinedatalist)
-            medicine_dataList.layoutManager=LinearLayoutManager(this)
-            list.addAll(listOf(MedicineListDAta(binding.medicineNameET.text.toString(),binding.notes.text.toString(),sum.toString())))
-            medicineListAdapter= MedicineListAdapter(this, list)
-           // var adapter=ArrayAdapter(this,android.R.layout.simple_list_item_1,list)
-            medicine_dataList.adapter=medicineListAdapter
-            binding.medicineNameET.text.clear()
-            binding.notes.text.clear()
-            binding.medicineQuantityET.setHint("Quality")
 
-            var subtotal=0
-            subtotal=subtotal+sum.toInt()
-            Log.d("total","subtotal==="+subtotal)
-            binding.subtotalET.setText(subtotal.toString())
 
-         /*   val dialog = Dialog(this)
-            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-            dialog.setCancelable(false)
-            dialog.setContentView(R.layout.customer_bill_details_dialog)
-            var listView=dialog.findViewById<ListView>(R.id.list)
-            list.addAll(listOf(result))
-            var adapter=ArrayAdapter(this,android.R.layout.simple_list_item_1,list)
-            listView.adapter=adapter
-            dialog.setCancelable(true)
-            dialog.show()*/
+
+
+//
         }
 
     }
@@ -166,6 +263,9 @@ class PrescriptionActivity : AppCompatActivity() {
                 // to our output text view.
                 binding.notes.setText(
                     Objects.requireNonNull(res)[0]
-                ) }
+                )
+            }
+        }
     }
-}}
+
+}

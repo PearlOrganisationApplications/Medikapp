@@ -16,6 +16,9 @@ class MedicineListAdapter (var context: Context, var medicineList:List<MedicineL
 
     class MedicineHolder(itemview: View) : RecyclerView.ViewHolder(itemview) {
         var medicine = itemview.findViewById<TextView>(R.id.medicine)
+        var quantity = itemview.findViewById<TextView>(R.id.quantity)
+        var discount = itemview.findViewById<TextView>(R.id.discount)
+        var priceperunit = itemview.findViewById<TextView>(R.id.price)
         var notes = itemview.findViewById<TextView>(R.id.notesTV)
         var subtotal = itemview.findViewById<TextView>(R.id.subtotalTV)
     }
@@ -27,6 +30,9 @@ class MedicineListAdapter (var context: Context, var medicineList:List<MedicineL
     override fun onBindViewHolder(holder: MedicineHolder, position: Int) {
         var data=medicineList[position]
         holder.medicine.text=data.medicine
+        holder.quantity.text = data.quantity
+        holder.discount.text = data.discount
+        holder.priceperunit.text = data.pricePerUnit
         holder.notes.text=data.notes
         holder.subtotal.text=data.subtotal
     }
