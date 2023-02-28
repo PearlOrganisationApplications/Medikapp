@@ -248,7 +248,8 @@
 
                 <HorizontalScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:fillViewport="true">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -264,7 +265,7 @@
 
                             <TextView
                                 android:layout_width="0dp"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:layout_weight="8"
                                 android:background="@drawable/label_bg"
                                 android:paddingHorizontal="5dp"
@@ -280,7 +281,7 @@
                                 android:background="@drawable/label_bg"
                                 android:paddingHorizontal="5dp"
                                 android:paddingVertical="10dp"
-                                android:text="quantity"
+                                android:text="qty."
                                 android:textAlignment="center"
                                 android:textColor="@color/white"
                                 android:textSize="15sp" />
@@ -292,7 +293,7 @@
                                 android:background="@drawable/label_bg"
                                 android:paddingHorizontal="5dp"
                                 android:paddingVertical="10dp"
-                                android:text="discount"
+                                android:text="disc."
                                 android:textAlignment="center"
                                 android:textColor="@color/white"
                                 android:textSize="15sp" />
@@ -304,7 +305,7 @@
                                 android:background="@drawable/label_bg"
                                 android:paddingHorizontal="5dp"
                                 android:paddingVertical="10dp"
-                                android:text="Price per unit"
+                                android:text="Price"
                                 android:textAlignment="center"
                                 android:textColor="@color/white"
                                 android:textSize="15sp" />
@@ -328,7 +329,7 @@
                                 android:background="@drawable/label_bg"
                                 android:paddingHorizontal="5dp"
                                 android:paddingVertical="10dp"
-                                android:text="subtotal"
+                                android:text="total"
                                 android:textAlignment="center"
                                 android:textColor="@color/white"
                                 android:textSize="15sp" />

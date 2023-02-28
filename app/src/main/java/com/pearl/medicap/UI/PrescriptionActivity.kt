@@ -66,10 +66,10 @@ class PrescriptionActivity : BaseClass() {
     @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        initializeClickListners()
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_prescription)
         window.statusBarColor = resources.getColor(R.color.App_color)
-
+        initializeClickListners()
         binding.mic.setOnClickListener {
             val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
             intent.putExtra(
