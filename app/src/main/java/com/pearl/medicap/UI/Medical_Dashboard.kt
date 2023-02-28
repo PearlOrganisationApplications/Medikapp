@@ -89,6 +89,21 @@ class Medical_Dashboard : BaseClass() {
             startActivity(Intent(this,MedicalProfileActivity::class.java))
             true
         }
+
+        draw_layout.menu.findItem(R.id.Support).setOnMenuItemClickListener {
+            startActivity(Intent(this,Support_Activity::class.java))
+            true
+        }
+
+        draw_layout.menu.findItem(R.id.term_condition).setOnMenuItemClickListener {
+            startActivity(Intent(this,Terms_Condition_Activity::class.java))
+            true
+        }
+
+        draw_layout.menu.findItem(R.id.About).setOnMenuItemClickListener {
+            startActivity(Intent(this,About_Activity::class.java))
+            true
+        }
     }
 
     override fun initializeInputs() {

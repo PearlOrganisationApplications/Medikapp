@@ -176,6 +176,19 @@ class Customer_Dashboard : BaseClass() {
             true
         }
 
+        binding.navigationView.menu.findItem(R.id.term_condition).setOnMenuItemClickListener {
+            startActivity(Intent(this, Terms_Condition_Activity::class.java))
+            true
+        }
+        binding.navigationView.menu.findItem(R.id.About).setOnMenuItemClickListener {
+            startActivity(Intent(this, About_Activity::class.java))
+            true
+        }
+        binding.navigationView.menu.findItem(R.id.Support).setOnMenuItemClickListener {
+            startActivity(Intent(this, Support_Activity::class.java))
+            true
+        }
+
     }
 
     fun hideSoftKeyboard(activity: Activity, view: View) {

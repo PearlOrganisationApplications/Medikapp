@@ -18,6 +18,7 @@ class MedicalProfileActivity : BaseClass() {
 
         setLayoutXml()
         changeStatusBarColor()
+        initializeClickListners()
         val isConnected = isNetworkConnected(this.applicationContext)
         if (isConnected) {
             //verifyVersion();

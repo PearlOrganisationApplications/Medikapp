@@ -36,11 +36,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:layout_marginTop="10dp">
+                    android:layout_marginTop="10dp"
+                    android:fillViewport="true"
+                    >
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="80dp"
+                        android:layout_height="wrap_content"
                         android:background="@drawable/rectangle_borderbg"
                         android:orientation="horizontal"
                         android:padding="5dp">
@@ -50,10 +52,10 @@
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_marginHorizontal="2dp"
-                            android:layout_weight="5.9"
+                            android:layout_weight="10"
                             android:background="@drawable/rectangle_borderbg"
                             android:hint="medicine name"
-                            android:padding="10dp"
+                            android:padding="5dp"
                             android:textSize="15sp" />
 
                         <EditText
@@ -61,10 +63,11 @@
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_marginHorizontal="2dp"
-                            android:layout_weight="4.0"
+                            android:layout_weight="5.0"
                             android:background="@drawable/rectangle_borderbg"
-                            android:hint="quantity"
-                            android:padding="10dp"
+                            android:hint="Qty."
+                            android:inputType="phone"
+                            android:padding="5dp"
                             android:textAlignment="center"
                             android:textSize="13sp" />
 
@@ -73,10 +76,11 @@
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_marginHorizontal="2dp"
-                            android:layout_weight="4.0"
+                            android:layout_weight="5.0"
                             android:background="@drawable/rectangle_borderbg"
                             android:hint="discount"
-                            android:padding="10dp"
+                            android:inputType="phone"
+                            android:padding="5dp"
                             android:textSize="12sp" />
 
                         <EditText
@@ -84,23 +88,11 @@
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_marginHorizontal="2dp"
-                            android:layout_weight="4.0"
+                            android:layout_weight="6.0"
                             android:background="@drawable/rectangle_borderbg"
-                            android:hint="Price per medicine"
-                            android:padding="10dp"
-                            android:textSize="13sp" />
-
-
-                        <EditText
-                            android:id="@+id/medicine_subtotalET"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginHorizontal="2dp"
-                            android:layout_weight="4.0"
-                            android:background="@drawable/rectangle_borderbg"
-                            android:hint="subtotal"
-                            android:editable="false"
-                            android:padding="10dp"
+                            android:hint="Price \nper unit"
+                            android:inputType="phone"
+                            android:padding="5dp"
                             android:textSize="13sp" />
 
                     </LinearLayout>
@@ -254,75 +246,105 @@
                     android:backgroundTint="@color/App_color"
                     android:text="Add" />
 
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        >
 
-
-                        <HorizontalScrollView
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fillViewport="true"
-                            >
-                            <LinearLayout
-                                android:layout_width="wrap_content"
+                            android:background="@drawable/label_bg"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="8"
+                                android:background="@drawable/label_bg"
+                                android:paddingHorizontal="5dp"
+                                android:paddingVertical="10dp"
+                                android:text="medicine name"
+                                android:textColor="@color/white"
+                                android:textSize="15sp" />
+
+                            <TextView
+                                android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_margin="5dp"
-                                android:layout_marginTop="10dp"
-                                android:background="@color/App_color"
-                                android:orientation="horizontal"
-                                android:weightSum="14"
-                                android:padding="5dp">
+                                android:layout_weight="4.0"
+                                android:background="@drawable/label_bg"
+                                android:paddingHorizontal="5dp"
+                                android:paddingVertical="10dp"
+                                android:text="quantity"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textSize="15sp" />
 
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="3"
-                                    android:text="Name"
-                                    android:textColor="@color/white" />
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="4.0"
+                                android:background="@drawable/label_bg"
+                                android:paddingHorizontal="5dp"
+                                android:paddingVertical="10dp"
+                                android:text="discount"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textSize="15sp" />
 
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1.5"
-                                    android:text="Qty."
-                                    android:textColor="@color/white" />
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="4.0"
+                                android:background="@drawable/label_bg"
+                                android:paddingHorizontal="5dp"
+                                android:paddingVertical="10dp"
+                                android:text="Price per unit"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textSize="15sp" />
 
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="2"
-                                    android:text="Dis.(%)"
-                                    android:textColor="@color/white" />
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="6.0"
+                                android:background="@drawable/label_bg"
+                                android:paddingHorizontal="5dp"
+                                android:paddingVertical="10dp"
+                                android:text="Notes"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textSize="15sp" />
 
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="3"
-                                    android:text="Price \n(per unit)"
-                                    android:textColor="@color/white" />
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="4.0"
+                                android:background="@drawable/label_bg"
+                                android:paddingHorizontal="5dp"
+                                android:paddingVertical="10dp"
+                                android:text="subtotal"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textSize="15sp" />
 
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="2"
-                                    android:text="Notes"
-                                    android:textColor="@color/white" />
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="2"
-                                    android:text="Sub Total"
-                                    android:textColor="@color/white" />
-                            </LinearLayout>
-                        </HorizontalScrollView>
+                        </LinearLayout>
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/medicinedatalist"
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp"
+                            android:layout_margin="5dp" />
+                    </LinearLayout>
 
 
+                </HorizontalScrollView>
 
-                            <androidx.recyclerview.widget.RecyclerView
-                                android:id="@+id/medicinedatalist"
-                                android:layout_width="match_parent"
-                                android:layout_height="150dp"
-                                android:layout_margin="5dp" />
+
 
 
 
@@ -337,8 +359,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        >
+                        android:orientation="horizontal">
 
                         <TextView
                             android:layout_width="0dp"
@@ -355,8 +376,8 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="2dp"
                             android:background="@drawable/rectangle_borderbg"
-                            android:hint="0.00₹"
                             android:editable="false"
+                            android:hint="0.00₹"
                             android:padding="5dp" />
                     </LinearLayout>
 
@@ -381,8 +402,8 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="2dp"
                             android:background="@drawable/rectangle_borderbg"
-                            android:hint="0.00₹"
                             android:editable="false"
+                            android:hint="0.00₹"
                             android:padding="5dp" />
                     </LinearLayout>
 
@@ -406,8 +427,8 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="2dp"
                             android:background="@drawable/rectangle_borderbg"
-                            android:hint="0.00₹"
                             android:editable="false"
+                            android:hint="0.00₹"
                             android:padding="5dp"
                             android:textColor="@color/black"
                             android:textStyle="bold" />

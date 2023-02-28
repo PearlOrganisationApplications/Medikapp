@@ -21,6 +21,8 @@ import com.pearl.medicap.R
 import com.pearl.medicap.databinding.ActivityPrescriptionBinding
 import com.pearl.medicap.model.MedicineListDAta
 import com.pearl.medicap.pearlLib.BaseClass
+import java.math.RoundingMode
+import java.text.DecimalFormat
 import java.util.*
 
 class PrescriptionActivity : BaseClass() {
@@ -43,7 +45,7 @@ class PrescriptionActivity : BaseClass() {
     }
 
     override fun initializeClickListners() {
-        var backBtn=findViewById<ImageView>(R.id.iv_back)
+        var backBtn = findViewById<ImageView>(R.id.iv_back)
         backBtn.setOnClickListener {
             this.finish()
         }
@@ -64,6 +66,7 @@ class PrescriptionActivity : BaseClass() {
     @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        initializeClickListners()
         binding = DataBindingUtil.setContentView(this, R.layout.activity_prescription)
         window.statusBarColor = resources.getColor(R.color.App_color)
 
@@ -81,7 +84,6 @@ class PrescriptionActivity : BaseClass() {
                 Toast.makeText(this, " " + e.message, Toast.LENGTH_SHORT).show()
             }
         }
-
 
 
 //        binding.medicineQuantityET.addTextChangedListener(object : TextWatcher {
@@ -159,31 +161,23 @@ class PrescriptionActivity : BaseClass() {
 
         binding.addBtn.setOnClickListener {
 
-            if(binding.medicineQuantityET.text.toString()!=null && binding.medicineDiscountET.text.toString()!=null && binding.medicinePerPriceET.text.toString()!=null){
+            if (binding.medicineQuantityET != null && binding.medicineDiscountET != null && binding.medicinePerPriceET != null) {
                 quantity = Integer.parseInt(binding.medicineQuantityET.text.toString())
                 discount = Integer.parseInt(binding.medicineDiscountET.text.toString()).toDouble()
                 cost = Integer.parseInt(binding.medicinePerPriceET.text.toString()).toDouble()
 
-                if(quantity != null || quantity != 0 && discount != null || discount != 0.0 && cost != null || cost != 0.0 ){
-                    Log.d("Medicine total", "quantity:::Discount:::cost" + quantity + "," + discount+","+cost)
+                if (quantity != null || quantity != 0 && discount != null || discount != 0.0 && cost != null || cost != 0.0) {
+                    Log.d(
+                        "Medicine total",
+                        "quantity:::Discount:::cost" + quantity + "," + discount + "," + cost
+                    )
                     discount = (binding.medicineDiscountET.text.toString().toDouble() / 100)
                     amount = (quantity * cost)
                     sum = (amount - (amount * discount))
-                    binding.medicineSubtotalET.setText(sum.toString())
-
-                    var subtotal = binding.subtotalET.text.toString()
-
-                    if(subtotal!=null && subtotal!="")
-                        sum = subtotal.toDouble() + sum
-
-                    binding.subtotalET.setText( (sum).toString())
+//                    binding.medicineSubtotalET.setText(sum.toString())
 
 
-                    var gst = 0.12
-                    binding.gstET.setText(gst.toString())
 
-                    var total = sum + (sum*gst)
-                    binding.totalET.setText(total.toString())
 
 //            Log.d("Medicine total", "quantity:::Discount:::cost:::amount:::sum" + quantity + "," + discount+","+cost+","+amount+","+sum)
 
@@ -208,15 +202,41 @@ class PrescriptionActivity : BaseClass() {
                         )
                     )
 
+
+
+                    if ((binding.subtotalET.text).toString() != null && (binding.subtotalET.text).toString() != "") {
+                        var subtotal = (binding.subtotalET.text).toString()
+                        sum += subtotal.toDouble()
+                        Log.d("medicine", "Sub total:::" + sum)
+
+                    } else {
+                        sum = sum
+                    }
+                    binding.subtotalET.setText(roundOffDecimal(sum).toString())
+
+                    var gst = 0.12
+                    binding.gstET.setText(gst.toString())
+                    var total = 0.0
+                    var subtotal = (binding.subtotalET.text).toString()
+
+                    if ((binding.subtotalET.text).toString() != null && (binding.subtotalET.text).toString() != "") {
+                        total = subtotal.toDouble() + (subtotal.toDouble() * gst)
+                    } else {
+                        total = sum + (sum * gst)
+                    }
+
+
+                    binding.totalET.setText(roundOffDecimal(total).toString())
+
                     medicineListAdapter = MedicineListAdapter(this, list)
                     // var adapter=ArrayAdapter(this,android.R.layout.simple_list_item_1,list)
                     medicine_dataList.adapter = medicineListAdapter
                     binding.medicineNameET.text.clear()
-                    binding.medicineQuantityET.setHint("Quantity")
                     binding.medicineDiscountET.text.clear()
                     binding.notes.text.clear()
                     sum = 0.0
-
+                    binding.medicineQuantityET.text.clear()
+                    binding.medicinePerPriceET.text.clear()
 
 //            var subtotal = 0
 //            subtotal = subtotal + sum.toInt()
@@ -233,19 +253,22 @@ class PrescriptionActivity : BaseClass() {
                        listView.adapter=adapter
                        dialog.setCancelable(true)
                        dialog.show()*/
-                }
-
-                else{
-                    Toast.makeText(this,"Please Fill all details",Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, "Please Fill all details", Toast.LENGTH_SHORT).show()
                 }
             }
-
-
 
 
 //
         }
 
+
+    }
+
+    fun roundOffDecimal(number: Double): Double? {
+        val df = DecimalFormat("#.##")
+        df.roundingMode = RoundingMode.FLOOR
+        return df.format(number).toDouble()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
