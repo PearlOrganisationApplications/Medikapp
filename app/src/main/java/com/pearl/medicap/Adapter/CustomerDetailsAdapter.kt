@@ -37,7 +37,7 @@ class CustomerDetailsAdapter(var context:Context,var details_list:List<CustomerM
         holder.medicine_name.text=data.medicine_name
         holder.pills.text=data.pills
         holder.itemView.setOnClickListener {
-            holder.cardview.setBackground(context.getDrawable(R.drawable.booking_box_outline))
+//            holder.cardview.setBackground(context.getDrawable(R.drawable.booking_box_outline))
             context.startActivity(Intent(context, CustomerDetailsActivity::class.java))
         }
     }

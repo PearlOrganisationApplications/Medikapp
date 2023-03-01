@@ -8,6 +8,7 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -124,6 +125,7 @@ class Customer_Dashboard : BaseClass() {
                 medicineAdapter = MedicineAdapter(this, medicineList)
                 binding.medicinelist.adapter = medicineAdapter
                 hideSoftKeyboard(this, it)
+                input_medicine.setBackgroundColor(Color.TRANSPARENT)
                 input_medicine.clearFocus()
                 input_medicine.text.clear()
                 //   input_medicine.setHint("")
