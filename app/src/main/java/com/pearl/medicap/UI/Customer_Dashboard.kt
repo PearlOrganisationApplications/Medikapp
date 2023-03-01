@@ -31,6 +31,7 @@ import com.pearl.medicap.Adapter.*
 import com.pearl.medicap.R
 import com.pearl.medicap.databinding.ActivityCustomerDashboardBinding
 import com.pearl.medicap.model.ComingSoon
+import com.pearl.medicap.model.CustomerMedicineList
 import com.pearl.medicap.model.MultipleImage
 import com.pearl.medicap.pearlLib.BaseClass
 import com.pearl.medicap.pearlLib.PrefManager
@@ -46,9 +47,10 @@ class Customer_Dashboard : BaseClass() {
 
 
     var imagelist = ArrayList<MultipleImage>()
-    var medicineList = ArrayList<String>()
+    var medicineList = ArrayList<CustomerMedicineList>()
     var banner_lisst = ArrayList<Int>()
     lateinit var input_medicine: EditText
+    lateinit var input_medicineQty: EditText
     lateinit var more_button: ImageView
     lateinit var done_button: ImageView
     lateinit var submit_button: Button
@@ -102,6 +104,7 @@ class Customer_Dashboard : BaseClass() {
 
     override fun initializeViews() {
         input_medicine = findViewById(R.id.input_medicineET)
+        input_medicineQty = findViewById(R.id.input_quantityET)
         // more_button=findViewById(R.id.next_btnTV)
         done_button = findViewById(R.id.done_btnTV)
         submit_button = findViewById(R.id.submit_bt)
@@ -120,14 +123,17 @@ class Customer_Dashboard : BaseClass() {
         }
         done_button.setOnClickListener {
             if (validateEmail(input_medicine)) {
-                var data = input_medicine.text.toString()
-                medicineList.add(data)
+                var medicineName = input_medicine.text.toString()
+                var medicineQuantity = input_medicineQty.text.toString()
+                medicineList.add(CustomerMedicineList(medicineName,medicineQuantity))
                 medicineAdapter = MedicineAdapter(this, medicineList)
                 binding.medicinelist.adapter = medicineAdapter
                 hideSoftKeyboard(this, it)
                 input_medicine.setBackgroundColor(Color.TRANSPARENT)
                 input_medicine.clearFocus()
                 input_medicine.text.clear()
+                input_medicineQty.clearFocus()
+                input_medicineQty.text.clear()
                 //   input_medicine.setHint("")
             }
         }

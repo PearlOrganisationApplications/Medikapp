@@ -10,14 +10,16 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.pearl.medicap.R
+import com.pearl.medicap.model.CustomerMedicineList
 
-class MedicineAdapter(var context:Context,var medicineList:List<String>):
+class MedicineAdapter(var context:Context,var medicineList:List<CustomerMedicineList>):
     Adapter<MedicineAdapter.MedicineHolder>() {
     var mlist=ArrayList<String>()
 
 
     class MedicineHolder(itemview:View):ViewHolder(itemview){
         var medicine=itemview.findViewById<TextView>(R.id.input_medicineTV)
+        var quantity = itemview.findViewById<TextView>(R.id.input_quantityTV)
         var remove_btn=itemview.findViewById<ImageView>(R.id.removeBtn)
     }
 
@@ -27,8 +29,8 @@ class MedicineAdapter(var context:Context,var medicineList:List<String>):
 
     override fun onBindViewHolder(holder: MedicineHolder, position: Int) {
         var data=medicineList[position]
-        this.mlist= medicineList as ArrayList<String>
-        holder.medicine.setText(data)
+        holder.medicine.setText(data.Name)
+        holder.quantity.setText(data.Quantity)
         holder.remove_btn.setOnClickListener {
             removeAt(position)
         }
