@@ -8,6 +8,7 @@ class PrefManager(var _context: Context) {
     var pref: SharedPreferences
     var editor: SharedPreferences.Editor
 
+
     // shared pref mode  
     var PRIVATE_MODE = 0
     companion object {
@@ -27,13 +28,13 @@ class PrefManager(var _context: Context) {
             editor.commit()
         }
     var isCustomerlogin: Boolean
-        get() = pref.getBoolean("Clogin", true)
+        get() = pref.getBoolean("Clogin", false)
         set(isFirstTime) {
             editor.putBoolean("Clogin", isFirstTime)
             editor.commit()
         }
     var isMedicallogin: Boolean
-        get() = pref.getBoolean("Dlogin", true)
+        get() = pref.getBoolean("Dlogin", false)
         set(isFirstTime) {
             editor.putBoolean("Dlogin", isFirstTime)
             editor.commit()

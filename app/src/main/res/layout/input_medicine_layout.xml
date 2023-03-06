@@ -32,6 +32,19 @@
         android:inputType="text"
         android:padding="8dp" />
 
+    <EditText
+        android:id="@+id/input_mgET"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="4dp"
+        android:layout_weight="1.0"
+        android:background="@null"
+        android:hint="mg"
+        android:imeOptions="actionDone"
+        android:inputType="text"
+        android:padding="8dp" />
+
     <ImageView
         android:id="@+id/done_btnTV"
         android:layout_width="50dp"

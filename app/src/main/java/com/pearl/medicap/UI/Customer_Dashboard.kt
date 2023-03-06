@@ -35,6 +35,7 @@ import com.pearl.medicap.model.CustomerMedicineList
 import com.pearl.medicap.model.MultipleImage
 import com.pearl.medicap.pearlLib.BaseClass
 import com.pearl.medicap.pearlLib.PrefManager
+import com.pearl.medicap.pearlLib.Session
 import me.relex.circleindicator.CircleIndicator
 import java.io.File
 import java.util.*
@@ -51,6 +52,7 @@ class Customer_Dashboard : BaseClass() {
     var banner_lisst = ArrayList<Int>()
     lateinit var input_medicine: EditText
     lateinit var input_medicineQty: EditText
+    lateinit var input_medicineMg:EditText
     lateinit var more_button: ImageView
     lateinit var done_button: ImageView
     lateinit var submit_button: Button
@@ -66,16 +68,10 @@ class Customer_Dashboard : BaseClass() {
     var comingsoonList = ArrayList<ComingSoon>()
 
     var currentPage = 0
-    lateinit var timerr: Timer
-    val DELAY_MS: Long = 500
-
-    val PERIOD_MS: Long = 3000
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        prefManager = PrefManager(this)
-        prefManager.isCustomerlogin = false
-        //prefManager.setCustomerlogin(false)
+        session = Session(this@Customer_Dashboard)
 
         setLayoutXml()
         changeStatusBarColor()
@@ -105,6 +101,7 @@ class Customer_Dashboard : BaseClass() {
     override fun initializeViews() {
         input_medicine = findViewById(R.id.input_medicineET)
         input_medicineQty = findViewById(R.id.input_quantityET)
+        input_medicineMg = findViewById(R.id.input_mgET)
         // more_button=findViewById(R.id.next_btnTV)
         done_button = findViewById(R.id.done_btnTV)
         submit_button = findViewById(R.id.submit_bt)
@@ -125,7 +122,8 @@ class Customer_Dashboard : BaseClass() {
             if (validateEmail(input_medicine)) {
                 var medicineName = input_medicine.text.toString()
                 var medicineQuantity = input_medicineQty.text.toString()
-                medicineList.add(CustomerMedicineList(medicineName,medicineQuantity))
+                var medicineMg = input_medicineMg.text.toString()
+                medicineList.add(CustomerMedicineList(medicineName,medicineQuantity,medicineMg))
                 medicineAdapter = MedicineAdapter(this, medicineList)
                 binding.medicinelist.adapter = medicineAdapter
                 hideSoftKeyboard(this, it)
@@ -134,6 +132,8 @@ class Customer_Dashboard : BaseClass() {
                 input_medicine.text.clear()
                 input_medicineQty.clearFocus()
                 input_medicineQty.text.clear()
+                input_medicineMg.clearFocus()
+                input_medicineMg.text.clear()
                 //   input_medicine.setHint("")
             }
         }
@@ -164,7 +164,11 @@ class Customer_Dashboard : BaseClass() {
             alertDialog2.setMessage("Are you sure you want to exit ?")
             alertDialog2.setPositiveButton("Yes") { dialog: DialogInterface?, which: Int ->
                 Toast.makeText(this, "Logout Successfully", Toast.LENGTH_SHORT).show()
+                session!!.clearSession()
+                prefManager!!.isCustomerlogin=false
+                session!!.hasSession=false
                 startActivity(Intent(this, LoginActivity::class.java))
+                finish()
             }
             alertDialog2.setNegativeButton(
                 "Cancel"

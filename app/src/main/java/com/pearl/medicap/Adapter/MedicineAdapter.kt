@@ -20,6 +20,7 @@ class MedicineAdapter(var context:Context,var medicineList:List<CustomerMedicine
     class MedicineHolder(itemview:View):ViewHolder(itemview){
         var medicine=itemview.findViewById<TextView>(R.id.input_medicineTV)
         var quantity = itemview.findViewById<TextView>(R.id.input_quantityTV)
+        var mg = itemview.findViewById<TextView>(R.id.input_mgTV)
         var remove_btn=itemview.findViewById<ImageView>(R.id.removeBtn)
     }
 
@@ -31,6 +32,7 @@ class MedicineAdapter(var context:Context,var medicineList:List<CustomerMedicine
         var data=medicineList[position]
         holder.medicine.setText(data.Name)
         holder.quantity.setText(data.Quantity)
+        holder.mg.setText(data.mg)
         holder.remove_btn.setOnClickListener {
             removeAt(position)
         }

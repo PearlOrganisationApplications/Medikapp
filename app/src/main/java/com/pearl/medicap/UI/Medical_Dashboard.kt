@@ -16,6 +16,7 @@ import com.pearl.medicap.R
 import com.pearl.medicap.model.CustomerMedicine
 import com.pearl.medicap.pearlLib.BaseClass
 import com.pearl.medicap.pearlLib.PrefManager
+import com.pearl.medicap.pearlLib.Session
 
 class Medical_Dashboard : BaseClass() {
     lateinit var drawer_button: ImageView
@@ -30,7 +31,7 @@ class Medical_Dashboard : BaseClass() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         prefManager= PrefManager(this)
-        prefManager.isMedicallogin=false
+        session = Session(this@Medical_Dashboard)
         setLayoutXml()
         changeStatusBarColor()
         val isConnected = isNetworkConnected(this.applicationContext)
@@ -73,8 +74,12 @@ class Medical_Dashboard : BaseClass() {
             alertDialog2.setTitle("Alert...")
             alertDialog2.setMessage("Are you sure you want to exit ?")
             alertDialog2.setPositiveButton("Yes") { dialog: DialogInterface?, which: Int ->
-                Toast.makeText(this,"Logout Successfully",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Logout Successfully", Toast.LENGTH_SHORT).show()
+                session!!.clearSession()
+                prefManager!!.isMedicallogin=false
+                session!!.hasSession=false
                 startActivity(Intent(this, LoginActivity::class.java))
+                finish()
             }
             alertDialog2.setNegativeButton(
                 "Cancel"

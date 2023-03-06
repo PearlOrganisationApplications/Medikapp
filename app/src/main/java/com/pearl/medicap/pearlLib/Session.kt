@@ -31,12 +31,21 @@ class Session(private val context: Context) {
     }
 
     var token: String?
-        get() = prefs.getString(U_TOKEN, null)
+        get() = prefs.getString(U_TOKEN, "")
         set(value) {
             val edits = prefs.edit()
             edits.putString(U_TOKEN, value)
             edits.apply()
         }
+
+    var email: String?
+        get() = prefs.getString(Email,"")
+        set(value){
+            val edits = prefs.edit()
+            edits.putString(Email,value)
+            edits.apply()
+        }
+
     var isUpdateRequired: Boolean?
         get() = prefs.getBoolean(IS_UPDATED, false)
         set(value) {
@@ -65,5 +74,6 @@ class Session(private val context: Context) {
         const val U_PINCODE = "pin_code"
         const val HAS_SESSION = "has_session"
         const val IS_UPDATED = "is_updated"
+        const val Email = "email"
     }
 }

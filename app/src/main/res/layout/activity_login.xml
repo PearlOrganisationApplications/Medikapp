@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".users.LoginActivity">
+    tools:context=".UI.LoginActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -76,6 +76,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
+                    android:id="@+id/forgot_pass"
                     style="@style/viewParent"
                     android:layout_gravity="end"
                     android:layout_marginTop="10dp"

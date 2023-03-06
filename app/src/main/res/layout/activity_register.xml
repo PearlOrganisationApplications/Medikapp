@@ -80,12 +80,13 @@
                                 android:maxLines="1" />
                         </LinearLayout>
 
+<!--                        normal user-->
                         <LinearLayout
                             android:id="@+id/ll_userform"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            android:visibility="gone">
+                            android:visibility="visible">
 
                             <com.google.android.material.textfield.TextInputLayout
                                 android:id="@+id/textInputName"
@@ -143,7 +144,7 @@
                                     android:hint="@string/dob"
                                     android:padding="12dp"
                                     android:background="@drawable/rectangle_borderbg"
-                                    android:inputType="textPassword"
+                                    android:inputType="date"
                                     android:maxLines="1" />
                             </com.google.android.material.textfield.TextInputLayout>
                             <com.google.android.material.textfield.TextInputLayout
@@ -173,12 +174,14 @@
 
 
                         </LinearLayout>
+
+<!--                        medical user-->
                         <LinearLayout
                             android:id="@+id/medicalform"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            android:visibility="visible">
+                            android:visibility="gone">
 
                             <com.google.android.material.textfield.TextInputLayout
                                 android:id="@+id/mName"
@@ -236,7 +239,7 @@
                                     android:hint="Pharmacy Name"
                                     android:padding="12dp"
                                     android:background="@drawable/rectangle_borderbg"
-                                    android:inputType="textPassword"
+                                    android:inputType="text"
                                     android:maxLines="1" />
                             </com.google.android.material.textfield.TextInputLayout>
                             <com.google.android.material.textfield.TextInputLayout
@@ -265,6 +268,7 @@
                                 android:orientation="horizontal">
 
                                 <TextView
+                                    android:id="@+id/certificateImgTV"
                                     android:layout_width="0dp"
                                     android:layout_weight="9.0"
                                     android:layout_margin="4dp"
@@ -274,6 +278,7 @@
                                     android:layout_gravity="center"
                                     />
                                 <ImageView
+                                    android:id="@+id/certificateImgBtn"
                                     android:layout_width="0dp"
                                     android:layout_weight="1"
                                     android:padding="4dp"
@@ -293,6 +298,7 @@
                                 android:orientation="horizontal">
 
                                 <TextView
+                                    android:id="@+id/shopImgTV"
                                     android:layout_width="0dp"
                                     android:layout_weight="9.0"
                                     android:layout_margin="4dp"
@@ -302,6 +308,7 @@
                                     android:layout_gravity="center"
                                     />
                                 <ImageView
+                                    android:id="@+id/shopImgBtn"
                                     android:layout_width="0dp"
                                     android:layout_weight="1"
                                     android:padding="4dp"
@@ -322,15 +329,18 @@
                                 android:id="@+id/textInputlocation"
                                 style="@style/parent"
                                 android:layout_weight="1"
+                                android:layout_height="wrap_content"
                                 >
 
                                 <EditText
                                     android:id="@+id/et_location"
                                     style="@style/modifiedEditText"
                                     android:hint="Pharmacy Address"
+                                    android:layout_height="wrap_content"
                                     android:padding="12dp"
+                                    android:editable="false"
                                     android:background="@drawable/rectangle_borderbg"
-                                    android:maxLines="1" />
+                                    android:maxLines="3" />
                             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -359,6 +369,30 @@
                                         android:textSize="@dimen/sp_14"
                                         android:layout_weight="1"/>
                                 </LinearLayout>
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:id="@+id/textInputMedPassword"
+                                    style="@style/parent"
+                                    android:layout_weight="1"
+                                    app:passwordToggleEnabled="true"
+                                    >
+
+                                    <EditText
+                                        android:id="@+id/et_password"
+                                        style="@style/modifiedEditText"
+                                        android:hint="Password"
+                                        android:padding="12dp"
+                                        android:inputType="textPassword"
+                                        android:background="@drawable/rectangle_borderbg"
+                                        android:maxLines="1" />
+                                </com.google.android.material.textfield.TextInputLayout>
+
 
                             </LinearLayout>
 
