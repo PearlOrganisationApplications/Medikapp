@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
     private var retrofit: Retrofit? = null
-    private const val BASE_URL = "https://test.pearl-developer.com/medikapp/public/api/"
+    private const val BASE_URL = "https://test.pearl-developer.com/medikapp/public/api/user/"
     val retrofitInstance: Retrofit?
         get() {
             if (retrofit == null) {

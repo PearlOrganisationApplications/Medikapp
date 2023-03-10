@@ -1,10 +1,9 @@
 package com.pearl.medicap.model
 
 class CustomerMedicineList (
-    var Name:String,
-    var Quantity:String,
-    var mg:String
-
+    var medicinename:String,
+    var quantity:String,
+    var mg:String,
         )
 
 

@@ -13,13 +13,13 @@ import com.pearl.medicap.pearlLib.PrefManager
 
 class Choose_User_Activity : BaseClass() {
 
-   lateinit var customer_btn:TextView
-  lateinit  var continue_button:TextView
-   lateinit var ll_medical:LinearLayout
-  lateinit  var ll_customer:LinearLayout
-   lateinit var check_customer:ImageView
-   lateinit var check_medical:ImageView
-   lateinit var prefManager: PrefManager
+    lateinit var customer_btn: TextView
+    lateinit var continue_button: TextView
+    lateinit var ll_medical: LinearLayout
+    lateinit var ll_customer: LinearLayout
+    lateinit var check_customer: ImageView
+    lateinit var check_medical: ImageView
+    lateinit var prefManager: PrefManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,9 +36,8 @@ class Choose_User_Activity : BaseClass() {
             initializeLabels()
             initializeInputs()
             printLogs("LoginActivity", "onCreate", "exitConnected")
-        }
-        else{
-            Toast.makeText(this,"Please connnect with internet", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(this, "Please connnect with internet", Toast.LENGTH_SHORT).show()
         }
 
     }
@@ -48,23 +47,22 @@ class Choose_User_Activity : BaseClass() {
     }
 
     override fun changeStatusBarColor() {
-        window.statusBarColor=resources.getColor(R.color.App_color)
+        window.statusBarColor = resources.getColor(R.color.App_color)
     }
 
 
-
     override fun initializeViews() {
-        customer_btn =findViewById<TextView>(R.id.customers_btn)
-         continue_button=findViewById<TextView>(R.id.continueeTV)
-         ll_medical=findViewById<LinearLayout>(R.id.ll_medical)
-         ll_customer=findViewById<LinearLayout>(R.id.ll_customer)
-         check_customer=findViewById<ImageView>(R.id.check_customer)
-         check_medical=findViewById<ImageView>(R.id.check_medical)
+        customer_btn = findViewById<TextView>(R.id.customers_btn)
+        continue_button = findViewById<TextView>(R.id.continueeTV)
+        ll_medical = findViewById<LinearLayout>(R.id.ll_medical)
+        ll_customer = findViewById<LinearLayout>(R.id.ll_customer)
+        check_customer = findViewById<ImageView>(R.id.check_customer)
+        check_medical = findViewById<ImageView>(R.id.check_medical)
     }
 
     override fun initializeClickListners() {
         ll_medical.setOnClickListener {
-            check_medical.visibility= View.VISIBLE
+            check_medical.visibility = View.VISIBLE
 
             prefManager.isCustomerlogin = false
 
@@ -76,7 +74,7 @@ class Choose_User_Activity : BaseClass() {
         }
         ll_customer.setOnClickListener {
             prefManager.isMedicallogin = false
-            check_customer.visibility= View.VISIBLE
+            check_customer.visibility = View.VISIBLE
             ll_customer.setBackgroundResource(R.drawable.background)
             startActivity(Intent(this, LoginActivity::class.java))
         }
@@ -92,7 +90,7 @@ class Choose_User_Activity : BaseClass() {
     }
 
     override fun initializeInputs() {
-        prefManager=PrefManager(this)
+        prefManager = PrefManager(this)
     }
 
     override fun initializeLabels() {}

@@ -1,11 +1,22 @@
 package com.pearl.medicap.api;
 
+import com.google.gson.JsonObject;
+import com.pearl.medicap.model.CustomerMedicineList;
 import com.pearl.medicap.model.ResponseModel;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
+import okhttp3.RequestBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
 public interface Methods {
@@ -49,28 +60,40 @@ public interface Methods {
     @FormUrlEncoded
     @POST("forgotPassword")
     Call<ResponseModel> forgotPass(
+            @Header("Authorization") String token,
             @Field("email") String email
     );
 
     @FormUrlEncoded
     @POST("verifyotp")
     Call<ResponseModel> verifyOtp(
+            @Header("Authorization") String token,
             @Field("otp") String otp
     );
 
     @FormUrlEncoded
     @POST("changePassword")
     Call<ResponseModel> changePassword(
-            @Field("token") String token,
+            @Header("Authorization") String token,
             @Field("password") String password
     );
 
-    @FormUrlEncoded
-    @POST("verifyUserEmail")
-    Call<ResponseModel> verifyEmail(
-            @Field("email") String email
-    );
 
-    @GET("getUsers")
-    Call<ResponseModel> fetchUsersDetails();
+    @POST("getUserDetails")
+    Call<ResponseModel> fetchUsersDetails(
+            @Header("Authorization") String token
+
+            );
+
+//    @POST("getUserDetails")
+//    Call<ResponseModel> fetchMedUsersDetails(
+//            @Header("Authentication") String token
+//    );
+
+
+    @POST("addMedicineRequest")
+    Call<ResponseModel> addMedicine(
+            @Header("Authorization") String token,
+            @Body JSONArray medicineDataList
+            );
 }

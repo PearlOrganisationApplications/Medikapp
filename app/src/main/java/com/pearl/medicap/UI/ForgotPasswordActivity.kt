@@ -95,7 +95,7 @@ class ForgotPasswordActivity : BaseClass() {
             Methods::class.java
         )
 
-        val call = methods?.forgotPass(email)
+        val call = methods?.forgotPass(session!!.token,email)
 
         call?.enqueue(object : Callback<ResponseModel>{
             override fun onResponse(call: Call<ResponseModel>, response: Response<ResponseModel>) {
@@ -125,7 +125,7 @@ class ForgotPasswordActivity : BaseClass() {
             Methods::class.java
         )
 
-        val call = methods?.verifyOtp(otp)
+        val call = methods?.verifyOtp(session!!.token,otp)
 
         call?.enqueue(object: Callback<ResponseModel>{
             override fun onResponse(call: Call<ResponseModel>, response: Response<ResponseModel>) {

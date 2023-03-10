@@ -13,6 +13,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
+import android.util.Log
 import android.view.View
 import android.view.Window
 import android.view.inputmethod.InputMethodManager
@@ -29,16 +30,24 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pearl.medicap.Adapter.*
 import com.pearl.medicap.R
+import com.pearl.medicap.api.Methods
+import com.pearl.medicap.api.RetrofitClient
 import com.pearl.medicap.databinding.ActivityCustomerDashboardBinding
 import com.pearl.medicap.model.ComingSoon
 import com.pearl.medicap.model.CustomerMedicineList
 import com.pearl.medicap.model.MultipleImage
+import com.pearl.medicap.model.ResponseModel
 import com.pearl.medicap.pearlLib.BaseClass
 import com.pearl.medicap.pearlLib.PrefManager
 import com.pearl.medicap.pearlLib.Session
 import me.relex.circleindicator.CircleIndicator
+import org.json.JSONArray
+import org.json.JSONException
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.io.File
-import java.util.*
 
 
 class Customer_Dashboard : BaseClass() {
@@ -49,6 +58,7 @@ class Customer_Dashboard : BaseClass() {
 
     var imagelist = ArrayList<MultipleImage>()
     var medicineList = ArrayList<CustomerMedicineList>()
+    var medicineDataList = ArrayList<CustomerMedicineList>()
     var banner_lisst = ArrayList<Int>()
     lateinit var input_medicine: EditText
     lateinit var input_medicineQty: EditText
@@ -67,6 +77,8 @@ class Customer_Dashboard : BaseClass() {
     lateinit var comingSoonAdapter: ComingSoonAdapter
     var comingsoonList = ArrayList<ComingSoon>()
 
+    var jsonArray = JSONArray()
+    var obj = JSONObject()
     var currentPage = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -123,34 +135,46 @@ class Customer_Dashboard : BaseClass() {
                 var medicineName = input_medicine.text.toString()
                 var medicineQuantity = input_medicineQty.text.toString()
                 var medicineMg = input_medicineMg.text.toString()
-                medicineList.add(CustomerMedicineList(medicineName,medicineQuantity,medicineMg))
-                medicineAdapter = MedicineAdapter(this, medicineList)
-                binding.medicinelist.adapter = medicineAdapter
-                hideSoftKeyboard(this, it)
-                input_medicine.setBackgroundColor(Color.TRANSPARENT)
-                input_medicine.clearFocus()
-                input_medicine.text.clear()
-                input_medicineQty.clearFocus()
-                input_medicineQty.text.clear()
-                input_medicineMg.clearFocus()
-                input_medicineMg.text.clear()
+                if(medicineName!=null || medicineName!="" && medicineQuantity!=null||medicineQuantity!="" && medicineMg!=null||medicineMg!=""){
+
+
+                    medicineList.add(CustomerMedicineList(medicineName,medicineQuantity,medicineMg))
+                    medicineAdapter = MedicineAdapter(this, medicineList)
+                    binding.medicinelist.adapter = medicineAdapter
+                    hideSoftKeyboard(this, it)
+                    input_medicine.setBackgroundColor(Color.TRANSPARENT)
+                    input_medicine.clearFocus()
+                    input_medicine.text.clear()
+                    input_medicineQty.clearFocus()
+                    input_medicineQty.text.clear()
+                    input_medicineMg.clearFocus()
+                    input_medicineMg.text.clear()
+
+                    Log.d("medicine list:: ", medicineList.toString())
+
+//                    try {
+//                        obj.put("medicineName", "${medicineList.get(1).medicinename}")
+//                        obj.put("quantity", "${medicineList.get(1).quantity}")
+//                        obj.put("mg", "${medicineList.get(1).mg}")
+//
+//                        jsonArray.put(obj)
+//
+//
+//                    } catch (e: JSONException) {
+//                        // TODO Auto-generated catch block
+//                        e.printStackTrace()
+//                    }
+
+                }
+
                 //   input_medicine.setHint("")
             }
         }
         submit_button.setOnClickListener {
-            val dialog = Dialog(this)
-            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-            dialog.setCancelable(false)
-            dialog.setContentView(R.layout.waiting_dialog_layout)
-            var ok_button = dialog.findViewById<Button>(R.id.ok_btn)
-            ok_button.setOnClickListener {
-                startActivity(Intent(this, CustomerBillDetailsActvity::class.java))
-                dialog.dismiss()
-            }
-            dialog.show()
 
-            Toast.makeText(this, "Your medicine Details successfully submitted", Toast.LENGTH_SHORT)
-                .show()
+
+            Log.d("jsonArray",jsonArray.toString())
+            sendMedicineList()
         }
 
         drawer_button.setOnClickListener {
@@ -207,6 +231,54 @@ class Customer_Dashboard : BaseClass() {
         val imm: InputMethodManager =
             activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0)
+    }
+
+    private fun sendMedicineList(){
+        val methods = RetrofitClient.retrofitInstance?.create(
+            Methods::class.java
+        )
+
+
+
+        val call = methods?.addMedicine(session!!.token,jsonArray)
+
+        call?.enqueue(object: Callback<ResponseModel>{
+            override fun onResponse(call: Call<ResponseModel>, response: Response<ResponseModel>) {
+                if(response.isSuccessful){
+
+                    medicineList.clear()
+                    showCustomeDialog()
+
+                }
+                else{
+                    var result = response.body()!!.status.toString()
+                    Toast.makeText(this@Customer_Dashboard, "Some Error Occured"+result, Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
+
+            override fun onFailure(call: Call<ResponseModel>, t: Throwable) {
+                Toast.makeText(this@Customer_Dashboard, "Some Error Occured", Toast.LENGTH_SHORT)
+                    .show()
+            }
+
+        })
+    }
+
+    private fun showCustomeDialog(){
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(false)
+        dialog.setContentView(R.layout.waiting_dialog_layout)
+        var ok_button = dialog.findViewById<Button>(R.id.ok_btn)
+        ok_button.setOnClickListener {
+            startActivity(Intent(this, CustomerBillDetailsActvity::class.java))
+            dialog.dismiss()
+        }
+        dialog.show()
+
+        Toast.makeText(this, "Your medicine Details successfully submitted", Toast.LENGTH_SHORT)
+            .show()
     }
 
     override fun initializeInputs() {

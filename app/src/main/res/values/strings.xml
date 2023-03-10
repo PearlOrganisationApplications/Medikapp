@@ -27,7 +27,7 @@
     <string name="waiting_medical_message">Medical is preparing\nyour medicine\nPlease wait for sometime...</string>
     <string name="medical">Pharmacist/Hospital</string>
     <string name="Customers">Customer</string>
-    <string name="dob">Date of Birth</string>
+    <string name="dob">Date of Birth (MM/DD/YYYY)</string>
 
     <string-array name="user_type">
         <item>Select user type</item>

@@ -30,8 +30,8 @@ class MedicineAdapter(var context:Context,var medicineList:List<CustomerMedicine
 
     override fun onBindViewHolder(holder: MedicineHolder, position: Int) {
         var data=medicineList[position]
-        holder.medicine.setText(data.Name)
-        holder.quantity.setText(data.Quantity)
+        holder.medicine.setText(data.medicinename)
+        holder.quantity.setText(data.quantity)
         holder.mg.setText(data.mg)
         holder.remove_btn.setOnClickListener {
             removeAt(position)

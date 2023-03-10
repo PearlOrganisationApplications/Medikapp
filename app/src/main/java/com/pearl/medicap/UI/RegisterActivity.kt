@@ -612,9 +612,9 @@ class RegisterActivity : BaseClass() {
         var adapter = ArrayAdapter.createFromResource(
             this,
             R.array.user_type,
-            android.R.layout.simple_spinner_item
+            R.layout.spinner_item_background
         )
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item)
+        adapter.setDropDownViewResource(R.layout.spinner_item_background)
         choose_user_spinner.adapter = adapter
     }
 
