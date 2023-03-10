@@ -78,7 +78,7 @@ class Customer_Dashboard : BaseClass() {
     var comingsoonList = ArrayList<ComingSoon>()
 
     var jsonArray = JSONArray()
-    var obj = JSONObject()
+//    var obj = JSONObject()
     var currentPage = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -152,19 +152,6 @@ class Customer_Dashboard : BaseClass() {
 
                     Log.d("medicine list:: ", medicineList.toString())
 
-//                    try {
-//                        obj.put("medicineName", "${medicineList.get(1).medicinename}")
-//                        obj.put("quantity", "${medicineList.get(1).quantity}")
-//                        obj.put("mg", "${medicineList.get(1).mg}")
-//
-//                        jsonArray.put(obj)
-//
-//
-//                    } catch (e: JSONException) {
-//                        // TODO Auto-generated catch block
-//                        e.printStackTrace()
-//                    }
-
                 }
 
                 //   input_medicine.setHint("")
@@ -172,6 +159,20 @@ class Customer_Dashboard : BaseClass() {
         }
         submit_button.setOnClickListener {
 
+            for(i in 0 until medicineAdapter.itemCount){
+                var obj = JSONObject()
+
+                try {
+                    obj.put("medicineName", "${medicineList.get(i).medicinename}")
+                    obj.put("quantity", "${medicineList.get(i).quantity}")
+                    obj.put("mg", "${medicineList.get(i).mg}")
+
+                    jsonArray.put(obj)
+                } catch (e: JSONException) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace()
+                }
+            }
 
             Log.d("jsonArray",jsonArray.toString())
             sendMedicineList()
@@ -237,8 +238,6 @@ class Customer_Dashboard : BaseClass() {
         val methods = RetrofitClient.retrofitInstance?.create(
             Methods::class.java
         )
-
-
 
         val call = methods?.addMedicine(session!!.token,jsonArray)
 
