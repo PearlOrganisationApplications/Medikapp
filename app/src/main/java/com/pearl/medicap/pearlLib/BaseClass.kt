@@ -148,15 +148,15 @@ abstract class BaseClass : AppCompatActivity() {
         val inputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(v.applicationWindowToken, 0)
     }
-    fun validateEmail(email: EditText): Boolean {
-        val email_id: String = email.getText().toString().trim { it <= ' ' }
-        setCustomError(null, email)
+    fun validate(input: EditText, message: String): Boolean {
+        val email_id: String = input.getText().toString().trim { it <= ' ' }
+        setCustomError(null, input)
         return if (email_id.isEmpty()) {
-            val sMessage = "Please enter medicine name..!!"
-            setCustomError(sMessage, email)
+            val sMessage = message
+            setCustomError(sMessage, input)
             false
         } else {
-            setCustomErrorDisabled(email)
+            setCustomErrorDisabled(input)
             true
         }
     }

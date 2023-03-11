@@ -65,7 +65,7 @@ class Customer_Dashboard : BaseClass() {
     var banner_lisst = ArrayList<Int>()
     lateinit var input_medicine: EditText
     lateinit var input_medicineQty: EditText
-    lateinit var input_medicineMg:EditText
+    lateinit var input_medicineMg: EditText
     lateinit var more_button: ImageView
     lateinit var done_button: ImageView
     lateinit var submit_button: Button
@@ -78,11 +78,14 @@ class Customer_Dashboard : BaseClass() {
     lateinit var viewPagerAdapter: ImageSlideAdapter
     lateinit var indicator: CircleIndicator
     lateinit var comingSoonAdapter: ComingSoonAdapter
+
+
     var comingsoonList = ArrayList<ComingSoon>()
     var medicineNameList=ArrayList<String>()
 
     var jsonArray = JSONArray()
-//    var obj = JSONObject()
+
+    //    var obj = JSONObject()
     var currentPage = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -104,6 +107,8 @@ class Customer_Dashboard : BaseClass() {
         } else {
             Toast.makeText(this, "Please connnect with internet", Toast.LENGTH_SHORT).show()
         }
+
+
     }
 
     override fun changeStatusBarColor() {
@@ -135,14 +140,23 @@ class Customer_Dashboard : BaseClass() {
             requestPermission()
         }
         done_button.setOnClickListener {
-            if (validateEmail(input_medicine)) {
+            if (validate(input_medicine, "Medicine Name Required!!")
+                && validate(input_medicineQty, "Quantity Required (in pills)")
+                && validate(input_medicineMg, "Medicine mg Required")
+            ) {
                 var medicineName = input_medicine.text.toString()
                 var medicineQuantity = input_medicineQty.text.toString()
                 var medicineMg = input_medicineMg.text.toString()
-                if(medicineName!=null || medicineName!="" && medicineQuantity!=null||medicineQuantity!="" && medicineMg!=null||medicineMg!=""){
+                if (medicineName != null || medicineName != "" && medicineQuantity != null || medicineQuantity != "" && medicineMg != null || medicineMg != "") {
 
 
-                    medicineList.add(CustomerMedicineList(medicineName,medicineQuantity,medicineMg))
+                    medicineList.add(
+                        CustomerMedicineList(
+                            medicineName,
+                            medicineQuantity,
+                            medicineMg
+                        )
+                    )
                     medicineAdapter = MedicineAdapter(this, medicineList)
                     binding.medicinelist.adapter = medicineAdapter
                     hideSoftKeyboard(this, it)
@@ -162,7 +176,12 @@ class Customer_Dashboard : BaseClass() {
             }
         }
         submit_button.setOnClickListener {
+<<<<<<< Updated upstream
             for(i in 0 until medicineAdapter.itemCount){
+=======
+
+            for (i in 0 until medicineAdapter.itemCount) {
+>>>>>>> Stashed changes
                 var obj = JSONObject()
 
                 try {
@@ -180,10 +199,17 @@ class Customer_Dashboard : BaseClass() {
                 }
             }
 
+<<<<<<< Updated upstream
             Log.d("jsonArray",jsonArray.toString())
            // sendMedicineList()
             sendData()
+=======
+            Log.d("jsonArray", jsonArray.toString())
+            sendMedicineList()
+>>>>>>> Stashed changes
         }
+
+
 
         drawer_button.setOnClickListener {
             drawer.openDrawer(GravityCompat.START)
@@ -197,8 +223,8 @@ class Customer_Dashboard : BaseClass() {
             alertDialog2.setPositiveButton("Yes") { dialog: DialogInterface?, which: Int ->
                 Toast.makeText(this, "Logout Successfully", Toast.LENGTH_SHORT).show()
                 session!!.clearSession()
-                prefManager!!.isCustomerlogin=false
-                session!!.hasSession=false
+                prefManager!!.isCustomerlogin = false
+                session!!.hasSession = false
                 startActivity(Intent(this, LoginActivity::class.java))
                 finish()
             }
@@ -242,6 +268,7 @@ class Customer_Dashboard : BaseClass() {
         imm.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0)
     }
 
+<<<<<<< Updated upstream
     private fun sendData() {
 
         var URL = "https://test.pearl-developer.com/medikapp/public/api/user/addMedicineRequest"
@@ -317,6 +344,29 @@ class Customer_Dashboard : BaseClass() {
                 else{
                    // var result = response.body()!!.status.toString()
                     Toast.makeText(this@Customer_Dashboard, "Some Error Occured", Toast.LENGTH_SHORT)
+=======
+    private fun sendMedicineList() {
+        val methods = RetrofitClient.retrofitInstance?.create(
+            Methods::class.java
+        )
+
+        val call = methods?.addMedicine(session!!.token, jsonArray)
+
+        call?.enqueue(object : Callback<ResponseModel> {
+            override fun onResponse(call: Call<ResponseModel>, response: Response<ResponseModel>) {
+                if (response.isSuccessful) {
+
+                    medicineList.clear()
+                    showCustomeDialog()
+
+                } else {
+                    var result = response.body()!!.status.toString()
+                    Toast.makeText(
+                        this@Customer_Dashboard,
+                        "Some Error Occured" + result,
+                        Toast.LENGTH_SHORT
+                    )
+>>>>>>> Stashed changes
                         .show()
                 }
             }
@@ -329,7 +379,7 @@ class Customer_Dashboard : BaseClass() {
         })
     }
 
-    private fun showCustomeDialog(){
+    private fun showCustomeDialog() {
         val dialog = Dialog(this)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setCancelable(false)

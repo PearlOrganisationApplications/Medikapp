@@ -37,8 +37,7 @@ public interface Methods {
             @Field("lat") String lat,
             @Field("lng") String lng,
             @Field("location_name") String location_name
-
-    );
+        );
 
     @FormUrlEncoded
     @POST("signup")
@@ -48,53 +47,49 @@ public interface Methods {
             @Field("email") String email,
             @Field("contactnumber") String contactnumber,
             @Field("password") String password
-
-    );
+        );
 
     @FormUrlEncoded
     @POST("signin")
     Call<ResponseModel> loginUser(
             @Field("email") String email,
             @Field("password") String password
-    );
+        );
 
     @FormUrlEncoded
     @POST("forgotPassword")
     Call<ResponseModel> forgotPass(
             @Header("Authorization") String token,
             @Field("email") String email
-    );
+        );
 
     @FormUrlEncoded
     @POST("verifyotp")
     Call<ResponseModel> verifyOtp(
             @Header("Authorization") String token,
             @Field("otp") String otp
-    );
+        );
 
     @FormUrlEncoded
     @POST("changePassword")
     Call<ResponseModel> changePassword(
             @Header("Authorization") String token,
             @Field("password") String password
-    );
-
+        );
 
     @POST("getUserDetails")
     Call<ResponseModel> fetchUsersDetails(
             @Header("Authorization") String token
-
-            );
+        );
 
 //    @POST("getUserDetails")
 //    Call<ResponseModel> fetchMedUsersDetails(
 //            @Header("Authentication") String token
 //    );
 
-
     @POST("addMedicineRequest")
     Call<JSONArray> addMedicine(
             @Header("Authorization") String token,
             @Body JSONArray medicineDataList
-            );
+        );
 }

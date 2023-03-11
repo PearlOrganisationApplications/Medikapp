@@ -152,6 +152,7 @@ class RegisterActivity : BaseClass() {
         registerMedBtn = findViewById(R.id.tvmedicalButton)
 
 
+
     }
 
     override fun initializeClickListners() {
@@ -738,10 +739,12 @@ class RegisterActivity : BaseClass() {
                 }
             }
 
-//            note:- add condition handling for take picture
-
             else {
                 val mediaScanIntent = Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE)
+
+                certificateImg.setText(certificateMediaUri.toString())
+
+                shopImg.setText(shopMediaUri.toString())
             }
         } else if (resultCode != RESULT_CANCELED) {
             Toast.makeText(applicationContext, "Cancelled!", Toast.LENGTH_LONG).show()
