@@ -1,6 +1,7 @@
 package com.pearl.medicap.UI
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
 import android.app.Dialog
@@ -28,6 +29,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.android.volley.AuthFailureError
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import com.pearl.medicap.Adapter.*
 import com.pearl.medicap.R
 import com.pearl.medicap.api.Methods
@@ -36,7 +40,6 @@ import com.pearl.medicap.databinding.ActivityCustomerDashboardBinding
 import com.pearl.medicap.model.ComingSoon
 import com.pearl.medicap.model.CustomerMedicineList
 import com.pearl.medicap.model.MultipleImage
-import com.pearl.medicap.model.ResponseModel
 import com.pearl.medicap.pearlLib.BaseClass
 import com.pearl.medicap.pearlLib.PrefManager
 import com.pearl.medicap.pearlLib.Session
@@ -76,6 +79,7 @@ class Customer_Dashboard : BaseClass() {
     lateinit var indicator: CircleIndicator
     lateinit var comingSoonAdapter: ComingSoonAdapter
     var comingsoonList = ArrayList<ComingSoon>()
+    var medicineNameList=ArrayList<String>()
 
     var jsonArray = JSONArray()
 //    var obj = JSONObject()
@@ -158,7 +162,6 @@ class Customer_Dashboard : BaseClass() {
             }
         }
         submit_button.setOnClickListener {
-
             for(i in 0 until medicineAdapter.itemCount){
                 var obj = JSONObject()
 
@@ -166,6 +169,9 @@ class Customer_Dashboard : BaseClass() {
                     obj.put("medicineName", "${medicineList.get(i).medicinename}")
                     obj.put("quantity", "${medicineList.get(i).quantity}")
                     obj.put("mg", "${medicineList.get(i).mg}")
+                    medicineNameList.add(medicineList.get(i).medicinename)
+                    medicineNameList.add(medicineList.get(i).quantity)
+                    medicineNameList.add(medicineList.get(i).mg)
 
                     jsonArray.put(obj)
                 } catch (e: JSONException) {
@@ -175,7 +181,8 @@ class Customer_Dashboard : BaseClass() {
             }
 
             Log.d("jsonArray",jsonArray.toString())
-            sendMedicineList()
+           // sendMedicineList()
+            sendData()
         }
 
         drawer_button.setOnClickListener {
@@ -228,35 +235,93 @@ class Customer_Dashboard : BaseClass() {
 
     }
 
+
     fun hideSoftKeyboard(activity: Activity, view: View) {
         val imm: InputMethodManager =
             activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0)
     }
 
+    private fun sendData() {
+
+        var URL = "https://test.pearl-developer.com/medikapp/public/api/user/addMedicineRequest"
+
+        val queue = Volley.newRequestQueue(this)
+
+        val jsonOblect: JsonObjectRequest =
+            object : JsonObjectRequest(
+                Method.POST, URL, jsonArray.toJSONObject(jsonArray),
+                com.android.volley.Response.Listener<JSONObject?> { response ->
+                    Log.d(" SendDATA", "response===$response")
+                    if(response!=null){
+
+                        medicineList.clear()
+                        showCustomeDialog()
+                    }
+                    else{
+                        // var result = response.body()!!.status.toString()
+                        Toast.makeText(this@Customer_Dashboard, "Some Error Occured", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+
+                },
+                com.android.volley.Response.ErrorListener { error -> Log.d("SendData", "error===$error") }) {
+                @SuppressLint("SuspiciousIndentation")
+                @Throws(AuthFailureError::class)
+                override fun getHeaders(): Map<String, String> {
+                    val headers: MutableMap<String, String> = HashMap()
+                    headers.put("Content-Type", "application/json; charset=UTF-8")
+                    headers.put("Authorization", "Bearer " + session!!.token)
+                    return headers
+                }
+
+                override fun getParams(): MutableMap<String, String> {
+                    val params: MutableMap<String, String> = HashMap()
+                   // params["raw"] = jsonArray.toString()
+                    Log.i("params ", "params : $params")
+                    return params
+
+                }
+            }
+
+        queue.add(jsonOblect)
+    }
+
+
+
     private fun sendMedicineList(){
-        val methods = RetrofitClient.retrofitInstance?.create(
-            Methods::class.java
-        )
 
-        val call = methods?.addMedicine(session!!.token,jsonArray)
+        val methods = RetrofitClient.retrofitInstance?.create(Methods::class.java)
+        for(i in 0 until medicineAdapter.itemCount) {
+            var obj = JSONObject()
 
-        call?.enqueue(object: Callback<ResponseModel>{
-            override fun onResponse(call: Call<ResponseModel>, response: Response<ResponseModel>) {
+            obj.put("medicineName", "${medicineList.get(i).medicinename}")
+            obj.put("quantity", "${medicineList.get(i).quantity}")
+            obj.put("mg", "${medicineList.get(i).mg}")
+            medicineNameList.add(medicineList.get(i).medicinename)
+            medicineNameList.add(medicineList.get(i).quantity)
+            medicineNameList.add(medicineList.get(i).mg)
+            jsonArray.put(obj)
+
+        }
+            val call = methods?.addMedicine(session!!.token,jsonArray)
+
+        call?.enqueue(object: Callback<JSONArray>{
+            override fun onResponse(call: Call<JSONArray>, response: Response<JSONArray>) {
+                Log.d("DataSEnd","Response==="+response)
                 if(response.isSuccessful){
 
                     medicineList.clear()
                     showCustomeDialog()
-
                 }
                 else{
-                    var result = response.body()!!.status.toString()
-                    Toast.makeText(this@Customer_Dashboard, "Some Error Occured"+result, Toast.LENGTH_SHORT)
+                   // var result = response.body()!!.status.toString()
+                    Toast.makeText(this@Customer_Dashboard, "Some Error Occured", Toast.LENGTH_SHORT)
                         .show()
                 }
             }
 
-            override fun onFailure(call: Call<ResponseModel>, t: Throwable) {
+            override fun onFailure(call: Call<JSONArray>, t: Throwable) {
                 Toast.makeText(this@Customer_Dashboard, "Some Error Occured", Toast.LENGTH_SHORT)
                     .show()
             }

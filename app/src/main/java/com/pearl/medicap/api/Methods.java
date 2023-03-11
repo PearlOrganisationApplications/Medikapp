@@ -8,6 +8,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -92,7 +93,7 @@ public interface Methods {
 
 
     @POST("addMedicineRequest")
-    Call<ResponseModel> addMedicine(
+    Call<JSONArray> addMedicine(
             @Header("Authorization") String token,
             @Body JSONArray medicineDataList
             );
